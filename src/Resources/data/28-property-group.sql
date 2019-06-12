@@ -1,0 +1,6 @@
+INSERT IGNORE INTO `property_group` (`id`, `sorting_type`, `display_type`, `created_at`, `updated_at`) VALUES
+(UNHEX('1857BB30FE6448C88F8AD331CF6DFA0C'),	'alphanumeric',	'text',	'2019-06-11 09:33:47.201',	NULL),
+(UNHEX('269C7E40A54A462E884EDB004C5F7BC8'),	'alphanumeric',	'color',	'2019-06-11 09:27:28.383',	NULL),
+(UNHEX('448F3D72803F4AC8AFC0C1108739DDF4'),	'alphanumeric',	'text',	'2019-06-12 06:44:51.349',	NULL),
+(UNHEX('75F353B589D04BF48E8A9AB1F5422B0E'),	'alphanumeric',	'text',	'2019-06-11 09:28:18.236',	NULL),
+(UNHEX('A67CDD9627CB488BB4CD91F3E8D66E32'),	'alphanumeric',	'text',	'2019-06-11 09:32:44.937',	NULL);
