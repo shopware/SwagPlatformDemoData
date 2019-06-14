@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Swag\SwagPlatformDemoDataDE;
+namespace Swag\PlatformDemoDataDE;
 
 use Doctrine\DBAL\Connection;
 use RecursiveDirectoryIterator;
@@ -8,7 +8,7 @@ use RecursiveIteratorIterator;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 
-class SwagPlatformDemoDataDE extends Plugin
+class PlatformDemoDataDE extends Plugin
 {
     public function install(InstallContext $context): void
     {
