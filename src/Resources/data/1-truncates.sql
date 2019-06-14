@@ -31,9 +31,3 @@ TRUNCATE `rule`;
 TRUNCATE `rule_condition`;
 TRUNCATE `product_keyword_dictionary`;
 TRUNCATE `product_search_keyword`;
-
-
-# Prob optional
-# TRUNCATE `media_default_folder`;
-# TRUNCATE `media_folder`;
-# TRUNCATE `media_folder_configuration`;
