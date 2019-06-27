@@ -5,6 +5,7 @@ SET @salutationId = (SELECT `id` FROM `salutation` WHERE `salutation_key` = 'mr'
 SET @categoryId = (SELECT `id` FROM `category` WHERE `auto_increment` = 1);
 SET @categoryVersionId = (SELECT `version_id` FROM `category` WHERE id = @categoryId);
 SET @taxId = (SELECT `id` FROM `tax` WHERE tax_rate = '19.00');
+SET @ruleId = (SELECT `id` FROM `rule` LIMIT 1);
 
 UPDATE customer
 SET `sales_channel_id` = @salesChannelId,
@@ -23,3 +24,6 @@ SET `tax_id` = @taxId;
 
 UPDATE `product_visibility`
 SET `sales_channel_id` = @salesChannelId;
+
+UPDATE `shipping_method`
+SET `availability_rule_id` = @ruleId;
