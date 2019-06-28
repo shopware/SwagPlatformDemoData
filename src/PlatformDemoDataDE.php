@@ -14,9 +14,11 @@ class PlatformDemoDataDE extends Plugin
     {
         $this->importMedia();
         $this->installDemoData();
+
+        $this->clearCache();
     }
 
-    private function importMedia()
+    private function importMedia(): void
     {
         $projectDir = $this->container->getParameter('kernel.project_dir');
         $pluginMediaDir = __DIR__ . '/Resources/media';
@@ -86,5 +88,11 @@ class PlatformDemoDataDE extends Plugin
     private function createDirectory(string $concurrentDirectory): bool
     {
         return !(!is_dir($concurrentDirectory) && mkdir($concurrentDirectory) && !is_dir($concurrentDirectory));
+    }
+
+    private function clearCache(): void
+    {
+        $cache = $this->container->get('shopware.cache');
+        $cache->clear();
     }
 }
