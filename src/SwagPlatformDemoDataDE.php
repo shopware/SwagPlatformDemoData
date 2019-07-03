@@ -8,7 +8,7 @@ use RecursiveIteratorIterator;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 
-class PlatformDemoDataDE extends Plugin
+class SwagPlatformDemoDataDE extends Plugin
 {
     public function install(InstallContext $context): void
     {

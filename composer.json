@@ -13,7 +13,7 @@
         "shopware/platform": "dev-master"
     },
     "extra": {
-        "shopware-plugin-class": "Swag\\PlatformDemoDataDE\\PlatformDemoDataDE",
+        "shopware-plugin-class": "Swag\\PlatformDemoDataDE\\SwagPlatformDemoDataDE",
         "label": {
             "de-DE": "Deutsches Demodaten Plugin für Shopware 6",
             "en-GB": "German demo data plugin for Shopware 6"
