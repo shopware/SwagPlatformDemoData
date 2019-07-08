@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "shopware/platform": "dev-master"
+        "shopware/core": "dev-master"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\PlatformDemoDataDE\\SwagPlatformDemoDataDE",

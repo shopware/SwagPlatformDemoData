@@ -1,10 +1,19 @@
-SET @salesChannelId = (SELECT `sales_channel_id` FROM `sales_channel_translation` WHERE `name` = 'Storefront');
+SET @salesChannelId = (SELECT `id` FROM sales_channel WHERE type_id = unhex('8a243080f92e4c719546314b577cf82b'));
 SET @paymentMethodId = (SELECT `id` FROM `payment_method` WHERE `active` = 1 LIMIT 1);
-SET @countryId = (SELECT `id` FROM `country` WHERE `iso` = 'DE');
-SET @salutationId = (SELECT `id` FROM `salutation` WHERE `salutation_key` = 'mr');
-SET @categoryId = (SELECT `id` FROM `category` WHERE `auto_increment` = 1);
+SET @countryId = (SELECT `id` FROM `country` WHERE UPPER(`iso`) = 'DE');
+SET @salutationId = (SELECT COALESCE(
+	(SELECT `id` FROM `salutation` WHERE `salutation_key` = 'mr'),
+	(SELECT `id` FROM `salutation`)
+));
+SET @categoryId = (SELECT COALESCE(
+	(SELECT `id` FROM `category` WHERE `auto_increment` = 1),
+	(SELECT `id` FROM `category` WHERE `active` AND parent_id IS NULL)
+));
 SET @categoryVersionId = (SELECT `version_id` FROM `category` WHERE id = @categoryId);
-SET @taxId = (SELECT `id` FROM `tax` WHERE tax_rate = '19.00');
+SET @taxId = (SELECT COALESCE(
+	(SELECT `id` FROM `tax` WHERE tax_rate = '19.00'),
+	(SELECT `id` FROM `tax`)
+));
 SET @ruleId = (SELECT `id` FROM `rule` LIMIT 1);
 
 UPDATE customer

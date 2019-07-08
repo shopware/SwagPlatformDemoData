@@ -2,9 +2,6 @@
 
 namespace Swag\PlatformDemoDataDE;
 
-use Doctrine\DBAL\Connection;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\InstallContext;
 
@@ -24,9 +21,9 @@ class SwagPlatformDemoDataDE extends Plugin
         $pluginMediaDir = __DIR__ . '/Resources/media';
         $mediaDir = $projectDir . '/public/media';
 
-        $iterator = new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator($pluginMediaDir, RecursiveDirectoryIterator::SKIP_DOTS),
-            RecursiveIteratorIterator::SELF_FIRST
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($pluginMediaDir, \RecursiveDirectoryIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::SELF_FIRST
         );
 
         foreach ($iterator as $item) {
@@ -44,20 +41,22 @@ class SwagPlatformDemoDataDE extends Plugin
 
     private function installDemoData(): void
     {
-        /** @var $connection Connection */
         $connection = $this->container->get('Doctrine\DBAL\Connection');
 
         $dataPaths = $this->getDataFilesList();
 
+        $connection->beginTransaction();
         $connection->executeUpdate('SET FOREIGN_KEY_CHECKS = 0;');
         try {
             foreach ($dataPaths as $dataFile) {
                 $sql = file_get_contents($dataFile);
                 $connection->executeUpdate($sql);
             }
-        } catch (\Exception $exception) {}
+        } catch (\Exception $exception) {
+        }
 
         $connection->executeUpdate('SET FOREIGN_KEY_CHECKS = 1;');
+        $connection->commit();
 
         if (isset($exception)) {
             throw $exception;
@@ -76,7 +75,7 @@ class SwagPlatformDemoDataDE extends Plugin
         $dataPaths = [];
 
         foreach ($regex as $result) {
-            $dataPriority = intval($result['1']);
+            $dataPriority = (int) $result['1'];
             $dataPaths[$dataPriority] = $dataPath . $result['0'];
         }
 
