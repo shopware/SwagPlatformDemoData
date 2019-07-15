@@ -63,8 +63,8 @@ class CustomerProvider extends DemoDataProvider
     {
         $result = $this->connection->fetchColumn('
             SELECT LOWER(HEX(COALESCE(
-	            (SELECT `id` FROM `salutation` WHERE `salutation_key` = "mr"),
-	            (SELECT `id` FROM `salutation`)
+	            (SELECT `id` FROM `salutation` WHERE `salutation_key` = "mr" LIMIT 1),
+	            (SELECT `id` FROM `salutation` LIMIT 1)
             )))
         ');
 

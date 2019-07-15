@@ -584,8 +584,8 @@ class ProductProvider extends DemoDataProvider
     {
         $result = $this->connection->fetchColumn('
             SELECT LOWER(HEX(COALESCE(
-                (SELECT `id` FROM `tax` WHERE tax_rate = "19.00"),
-	            (SELECT `id` FROM `tax`)
+                (SELECT `id` FROM `tax` WHERE tax_rate = "19.00" LIMIT 1),
+	            (SELECT `id` FROM `tax`  LIMIT 1)
             )))
         ');
 
