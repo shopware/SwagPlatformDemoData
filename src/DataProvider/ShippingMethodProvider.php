@@ -51,7 +51,7 @@ class ShippingMethodProvider extends DemoDataProvider
         ');
 
         if (!$result) {
-            throw new \RuntimeException('No country for iso code "' . $iso . '" found, please make sure that basic data is available by running the migrations.');
+            throw new \RuntimeException('No rule found, please make sure that basic data is available by running the migrations.');
         }
 
         return (string) $result;
