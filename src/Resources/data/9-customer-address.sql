@@ -1,2 +1,0 @@
-INSERT IGNORE INTO `customer_address` (`id`, `customer_id`, `country_id`, `salutation_id`, `first_name`, `last_name`, `street`, `zipcode`, `city`, `created_at`) VALUES
-(UNHEX('D8F0DFF7EF3947979A83C42F6509F22C'),	UNHEX('6C97534C2C0747F39E8751E43CB2B013'),	UNHEX('35E140979F9B490980DB3AE53FE22123'), UNHEX('2175BBAF291F48249CAF92930745E6C3'),	'Max',	'Mustermann',	'Musterstraße 1',	'12345',	'Musterstadt',	'2019-06-12 07:12:15.086');

@@ -1,0 +1,110 @@
+<?php declare(strict_types=1);
+
+namespace Swag\PlatformDemoData\DataProvider;
+
+use Shopware\Core\Content\Media\File\FileSaver;
+use Shopware\Core\Content\Media\File\MediaFile;
+use Shopware\Core\Framework\Context;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class MediaProvider extends DemoDataProvider
+{
+    public function getPriority(): int
+    {
+        return 1100;
+    }
+
+    public function getAction(): string
+    {
+        return 'upsert';
+    }
+
+    public function getEntity(): string
+    {
+        return 'media';
+    }
+
+    public function getPayload(): array
+    {
+        $productFolder = $this->getDefaultFolderIdForEntity('product');
+        $cmsFolder = $this->getDefaultFolderIdForEntity('cms_page');
+
+        return [
+            [
+                'id' => '102ac62ba27347a688030a05c1790db7',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '2de02991cd0548a4ac6cc35cb11773a0',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '5808d194947f415495d9782d8fdc92ae',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '6968ad64888844679918c638e449ffc5',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '6cbbdc03b43f4207be80b5f752d5a1c4',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '70e352200b5c45098dc65a5b47094a2a',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => '84356a71233d4b3e9f417dcc8850c82f',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => 'f69ab8ae42d04e17b2bab5ec2ff0a93c',
+                'mediaFolderId' => $productFolder,
+            ],
+            [
+                'id' => 'de4b7dbe9d95435092cb85ce146ced28',
+                'mediaFolderId' => $cmsFolder,
+            ],
+
+        ];
+    }
+
+    public function finalize(ContainerInterface $container, Context $context): void
+    {
+        $fileSaver = $container->get(FileSaver::class);
+
+        foreach (glob(__DIR__ . '/../Resources/media/*/*.jpg') as $file) {
+
+            $fileSaver->persistFileToMedia(
+                new MediaFile(
+                    $file,
+                    mime_content_type($file),
+                    pathinfo($file, PATHINFO_EXTENSION),
+                    filesize($file)
+                ),
+                pathinfo($file, PATHINFO_FILENAME),
+                basename(dirname($file)),
+                $context
+            );
+        }
+
+        parent::finalize($container, $context);
+    }
+
+    private function getDefaultFolderIdForEntity(string $entity)
+    {
+        $result = $this->connection->fetchColumn('
+            SELECT LOWER(HEX(`media_folder`.`id`))
+            FROM `media_default_folder`
+            JOIN `media_folder` ON `media_default_folder`.`id` = `media_folder`.`default_folder_id`
+            WHERE `media_default_folder`.`entity` = :entity;
+        ', ['entity' => $entity]);
+
+        if (!$result) {
+            throw new \RuntimeException('No default folder for entity "' . $entity . '" found, please make sure that basic data is available by running the migrations.');
+        }
+
+        return (string) $result;
+    }
+}
