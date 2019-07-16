@@ -37,7 +37,7 @@ class CategoryProvider extends DemoDataProvider
                     [
                         'id' => '77b959cf66de4c1590c7f9b7da3982f3',
                         'cmsPageId'=> 'cd0f8e5823044d798001b371c2687a24',
-                        'active' => true,
+                        'active' => false,
                         'displayNestedProducts' => true,
                         'visible' => true,
                         'type' => 'page',
