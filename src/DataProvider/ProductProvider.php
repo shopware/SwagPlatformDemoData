@@ -32,7 +32,7 @@ class ProductProvider extends DemoDataProvider
         return [
             [
                 'id' => '11dc680240b04f469ccba354cbf0b967',
-                'productNumber' => 'SW10002',
+                'productNumber' => 'SWDEMO10002',
                 'active' => true,
                 'taxId' => $taxId,
                 'stock' => 10,
@@ -113,7 +113,7 @@ class ProductProvider extends DemoDataProvider
             ],
             [
                 'id' => '1901dc5e888f4b1ea4168c2c5f005540',
-                'productNumber' => 'SW100013',
+                'productNumber' => 'SWDEMO100013',
                 'active' => false,
                 'taxId' => $taxId,
                 'stock' => 40,
@@ -174,7 +174,7 @@ class ProductProvider extends DemoDataProvider
             ],
             [
                 'id' => '2a88d9b59d474c7e869d8071649be43c',
-                'productNumber' => 'SW10001',
+                'productNumber' => 'SWDEMO10001',
                 'active' => true,
                 'taxId' => $taxId,
                 'stock' => 10,
@@ -242,7 +242,7 @@ class ProductProvider extends DemoDataProvider
             ],
             [
                 'id' => '3ac014f329884b57a2cce5a29f34779c',
-                'productNumber' => 'SW10006',
+                'productNumber' => 'SWDEMO10006',
                 'active' => true,
                 'taxId' => $taxId,
                 'stock' => 50,
@@ -301,7 +301,7 @@ class ProductProvider extends DemoDataProvider
             ],
             [
                 'id' => '43a23e0c03bf4ceabc6055a2185faa87',
-                'productNumber' => 'SW10005',
+                'productNumber' => 'SWDEMO10005',
                 'active' => true,
                 'taxId' => $taxId,
                 'stock' => 50,
@@ -382,7 +382,7 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'children' => [
                     [
-                        'productNumber' => 'SW10005.1',
+                        'productNumber' => 'SWDEMO10005.1',
                         'stock' => 50,
                         'options' => [
                             [
@@ -394,7 +394,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10005.2',
+                        'productNumber' => 'SWDEMO10005.2',
                         'stock' => 50,
                         'options' => [
                             [
@@ -406,7 +406,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10005.3',
+                        'productNumber' => 'SWDEMO10005.3',
                         'stock' => 50,
                         'options' => [
                             [
@@ -418,7 +418,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10005.4',
+                        'productNumber' => 'SWDEMO10005.4',
                         'stock' => 50,
                         'options' => [
                             [
@@ -430,7 +430,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10005.5',
+                        'productNumber' => 'SWDEMO10005.5',
                         'stock' => 50,
                         'options' => [
                             [
@@ -442,7 +442,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10005.6',
+                        'productNumber' => 'SWDEMO10005.6',
                         'stock' => 50,
                         'options' => [
                             [
@@ -457,7 +457,7 @@ class ProductProvider extends DemoDataProvider
             ],
             [
                 'id' => 'c7bca22753c84d08b6178a50052b4146',
-                'productNumber' => 'SW10007',
+                'productNumber' => 'SWDEMO10007',
                 'active' => true,
                 'taxId' => $taxId,
                 'stock' => 50,
@@ -540,7 +540,7 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'children' => [
                     [
-                        'productNumber' => 'SW10007.1',
+                        'productNumber' => 'SWDEMO10007.1',
                         'stock' => 50,
                         'options' => [
                             [
@@ -549,7 +549,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10007.2',
+                        'productNumber' => 'SWDEMO10007.2',
                         'stock' => 50,
                         'options' => [
                             [
@@ -558,7 +558,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10007.3',
+                        'productNumber' => 'SWDEMO10007.3',
                         'stock' => 50,
                         'options' => [
                             [
@@ -567,7 +567,7 @@ class ProductProvider extends DemoDataProvider
                         ]
                     ],
                     [
-                        'productNumber' => 'SW10007.4',
+                        'productNumber' => 'SWDEMO10007.4',
                         'stock' => 50,
                         'options' => [
                             [
