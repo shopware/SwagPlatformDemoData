@@ -33,7 +33,7 @@ class CustomerProvider extends DemoDataProvider
                 'defaultPaymentMethodId' => $paymentMethodId,
                 'salutationId' => $salutationId,
                 'salesChannelId' => Defaults::SALES_CHANNEL,
-                'customerNumber' => '10000',
+                'customerNumber' => 'SWDEMO10000',
                 'firstName' => 'Max',
                 'lastName' => 'Mustermann',
                 'password' => '$2y$10$qYoCQe2r3h/tiGIqwsq7YuuKBGCEmgtM/U4v182xtKDrFv5vSNFJO',
