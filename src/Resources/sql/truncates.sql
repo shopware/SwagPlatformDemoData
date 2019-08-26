@@ -15,6 +15,7 @@ WHERE `media`.`id` NOT IN (
         WHERE `media_default_folder`.`entity` = "theme"
     ) AS `temp`
 );
+DELETE FROM `media_thumbnail`;
 DELETE FROM `product`;
 DELETE FROM `product_category`;
 DELETE FROM `product_category_tree`;
