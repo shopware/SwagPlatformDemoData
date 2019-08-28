@@ -47,7 +47,7 @@ class PropertyProvider extends DemoDataProvider
                         'id' => '7cab88165ae5420f921232511b6e8f7d',
                         'name' => [
                             'de-DE' => 'Frau',
-                            'en-GB' => 'Women'
+                            'en-GB' => 'Woman'
                         ],
                     ],
                     [
@@ -65,7 +65,7 @@ class PropertyProvider extends DemoDataProvider
                 'displayType' => PropertyGroupDefinition::DISPLAY_TYPE_COLOR,
                 'name' => [
                     'de-DE' => 'Farbe',
-                    'en-GB' => 'Color'
+                    'en-GB' => 'Colour'
                 ],
                 'options' => [
                     [

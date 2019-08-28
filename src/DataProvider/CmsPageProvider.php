@@ -104,7 +104,7 @@ class CmsPageProvider extends DemoDataProvider
                 'type' => 'product_list',
                 'locked' => 1,
                 'name' => [
-                    'de-DE' => 'Standard Kategorie Layout',
+                    'de-DE' => 'Standard-Kategorie-Layout',
                     'en-GB' => 'Default category layout'
                 ],
                 'blocks' => [

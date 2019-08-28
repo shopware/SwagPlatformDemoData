@@ -25,7 +25,7 @@ class RuleProvider extends DemoDataProvider
         return [
             [
                 'id' => '28caae75a5624f0d985abd0eb32aa160',
-                'name' => 'Alle Kunden aus Standard-Kundengruppe',
+                'name' => 'Alle Kunden der Standard-Kundengruppe',
                 'priority' => 1,
                 'conditions' => [
                     [
