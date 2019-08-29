@@ -47,8 +47,8 @@ class ProductProvider extends DemoDataProvider
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
                 'name' => [
-                    'de-DE' => 'Hauptartikel mit erweiterten Preisen',
-                    'en-GB' => 'Product with advanced prices'
+                    'de-DE' => 'Hauptprodukt mit erweiterten Preisen',
+                    'en-GB' => 'Main product with advanced prices'
                 ],
                 'description' => [
                     'de-DE' => self::LOREM_IPSUM,
@@ -124,8 +124,8 @@ class ProductProvider extends DemoDataProvider
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
                 'name' => [
-                    'de-DE' => 'Hauptartikel mit Bewertungen',
-                    'en-GB' => 'Product with reviews'
+                    'de-DE' => 'Hauptprodukt mit Bewertungen',
+                    'en-GB' => 'Main product with reviews'
                 ],
                 'description' => [
                     'de-DE' => self::LOREM_IPSUM,
@@ -254,8 +254,8 @@ class ProductProvider extends DemoDataProvider
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
                 'name' => [
-                    'de-DE' => 'Hauptartikel mit Kennzeichnung Versandkostenfrei und Hervorhebung',
-                    'en-GB' => 'Shipping free product with highlighting'
+                    'de-DE' => 'Hauptprodukt, versandkostenfrei mit Hervorhebung',
+                    'en-GB' => 'Main product, free shipping with highlighting'
                 ],
                 'description' => [
                     'de-DE' => self::LOREM_IPSUM,
@@ -313,7 +313,7 @@ class ProductProvider extends DemoDataProvider
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
                 'name' => [
-                    'de-DE' => 'Variantenartikel',
+                    'de-DE' => 'Variantenprodukt',
                     'en-GB' => 'Variant product'
                 ],
                 'description' => [
@@ -468,7 +468,7 @@ class ProductProvider extends DemoDataProvider
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
                 'name' => [
-                    'de-DE' => 'Hauptartikel mit Eigenschaften',
+                    'de-DE' => 'Hauptprodukt mit Eigenschaften',
                     'en-GB' => 'Main product with properties'
                 ],
                 'description' => [
