@@ -65,7 +65,7 @@ class DemoDataService
             $response  = $this->sync->sync(new Request([], [], [], [], [], [], json_encode($payload)), $context);
             $result = json_decode($response->getContent(), true);
 
-            if (count($result['errors']) > 0) {
+            if (isset($result['errors']) && count($result['errors']) > 0) {
                 throw new \RuntimeException(sprintf('Error importing "%s": %s', $dataProvider->getEntity(), print_r($result['errors'], true)));
             }
 
