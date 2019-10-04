@@ -6,11 +6,6 @@ use Shopware\Core\Defaults;
 
 class CustomerProvider extends DemoDataProvider
 {
-    public function getPriority(): int
-    {
-        return 800;
-    }
-
     public function getAction(): string
     {
         return 'upsert';

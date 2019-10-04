@@ -6,11 +6,6 @@ use Doctrine\DBAL\FetchMode;
 
 class ShippingMethodProvider extends DemoDataProvider
 {
-    public function getPriority(): int
-    {
-        return 200;
-    }
-
     public function getAction(): string
     {
         return 'upsert';

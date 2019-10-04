@@ -6,11 +6,6 @@ use Doctrine\DBAL\FetchMode;
 
 class SalesChannelProvider extends DemoDataProvider
 {
-    public function getPriority(): int
-    {
-        return 300;
-    }
-
     public function getAction(): string
     {
         return 'upsert';

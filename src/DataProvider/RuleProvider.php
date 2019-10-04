@@ -4,11 +4,6 @@ namespace Swag\PlatformDemoData\DataProvider;
 
 class RuleProvider extends DemoDataProvider
 {
-    public function getPriority(): int
-    {
-        return 700;
-    }
-
     public function getAction(): string
     {
         return 'upsert';

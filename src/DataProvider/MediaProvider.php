@@ -5,13 +5,20 @@ namespace Swag\PlatformDemoData\DataProvider;
 use Shopware\Core\Content\Media\File\FileSaver;
 use Shopware\Core\Content\Media\File\MediaFile;
 use Shopware\Core\Framework\Context;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MediaProvider extends DemoDataProvider
 {
-    public function getPriority(): int
+    /**
+     * @var FileSaver
+     */
+    private $fileSaver;
+
+    /**
+     * @required
+     */
+    public function setFilterSaver(FileSaver $fileSaver): void
     {
-        return 1100;
+        $this->fileSaver = $fileSaver;
     }
 
     public function getAction(): string
@@ -70,13 +77,10 @@ class MediaProvider extends DemoDataProvider
         ];
     }
 
-    public function finalize(ContainerInterface $container, Context $context): void
+    public function finalize(Context $context): void
     {
-        $fileSaver = $container->get(FileSaver::class);
-
         foreach (glob(__DIR__ . '/../Resources/media/*/*.jpg') as $file) {
-
-            $fileSaver->persistFileToMedia(
+            $this->fileSaver->persistFileToMedia(
                 new MediaFile(
                     $file,
                     mime_content_type($file),
@@ -89,7 +93,7 @@ class MediaProvider extends DemoDataProvider
             );
         }
 
-        parent::finalize($container, $context);
+        parent::finalize($context);
     }
 
     private function getDefaultFolderIdForEntity(string $entity)
