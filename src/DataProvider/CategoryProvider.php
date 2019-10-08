@@ -15,6 +15,11 @@ class CategoryProvider extends DemoDataProvider
      */
     private $categoryRepository;
 
+    public function __construct(EntityRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function getAction(): string
     {
         return 'upsert';
@@ -148,11 +153,6 @@ class CategoryProvider extends DemoDataProvider
                 ]
             ]
         ];
-    }
-
-    public function setCategoryRepository(EntityRepositoryInterface $categoryRepository): void
-    {
-        $this->categoryRepository = $categoryRepository;
     }
 
     private function getRootCategoryId(): string

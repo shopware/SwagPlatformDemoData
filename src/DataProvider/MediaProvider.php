@@ -2,6 +2,7 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Media\File\FileSaver;
 use Shopware\Core\Content\Media\File\MediaFile;
 use Shopware\Core\Framework\Context;
@@ -14,11 +15,14 @@ class MediaProvider extends DemoDataProvider
     private $fileSaver;
 
     /**
-     * @required
+     * @var Connection
      */
-    public function setFilterSaver(FileSaver $fileSaver): void
+    private $connection;
+
+    public function __construct(Connection $connection, FileSaver $fileSaver)
     {
         $this->fileSaver = $fileSaver;
+        $this->connection = $connection;
     }
 
     public function getAction(): string

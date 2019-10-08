@@ -2,10 +2,21 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 
 class ShippingMethodProvider extends DemoDataProvider
 {
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection)
+    {
+        $this->connection = $connection;
+    }
+
     public function getAction(): string
     {
         return 'upsert';

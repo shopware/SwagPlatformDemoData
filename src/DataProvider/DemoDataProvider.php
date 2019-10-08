@@ -7,16 +7,6 @@ use Shopware\Core\Framework\Context;
 
 abstract class DemoDataProvider
 {
-    /**
-     * @var Connection
-     */
-    protected $connection;
-
-    final public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
-
     abstract public function getAction(): string;
 
     abstract public function getEntity(): string;
