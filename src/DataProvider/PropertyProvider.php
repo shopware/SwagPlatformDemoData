@@ -2,18 +2,10 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
-use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\Content\Property\PropertyGroupDefinition;
-use Shopware\Core\Defaults;
-use Shopware\Core\Framework\Uuid\Uuid;
 
 class PropertyProvider extends DemoDataProvider
 {
-    public function getPriority(): int
-    {
-        return 500;
-    }
-
     public function getAction(): string
     {
         return 'upsert';

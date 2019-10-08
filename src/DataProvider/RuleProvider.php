@@ -2,11 +2,18 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
+
 class RuleProvider extends DemoDataProvider
 {
-    public function getPriority(): int
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection)
     {
-        return 700;
+        $this->connection = $connection;
     }
 
     public function getAction(): string

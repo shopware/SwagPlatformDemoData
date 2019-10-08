@@ -2,11 +2,22 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Shopware\Core\Content\Category\CategoryEntity;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+
 class CategoryProvider extends DemoDataProvider
 {
-    public function getPriority(): int
+    /**
+     * @var EntityRepositoryInterface
+     */
+    private $categoryRepository;
+
+    public function __construct(EntityRepositoryInterface $categoryRepository)
     {
-        return 900;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function getAction(): string
@@ -23,7 +34,7 @@ class CategoryProvider extends DemoDataProvider
     {
         return [
             [
-                'id' => 'f9aa6920eb7d44c7a516a38ed68fcc35',
+                'id' => $this->getRootCategoryId(),
                 'cmsPageId'=> '695477e02ef643e5a016b83ed4cdf63a',
                 'active' => true,
                 'displayNestedProducts' => true,
@@ -142,5 +153,19 @@ class CategoryProvider extends DemoDataProvider
                 ]
             ]
         ];
+    }
+
+    private function getRootCategoryId(): string
+    {
+        $criteria = new Criteria();
+        $criteria->addFilter(new EqualsFilter('parentId', null));
+
+        /** @var CategoryEntity|null $rootCategory */
+        $rootCategory = $this->categoryRepository->search($criteria, Context::createDefaultContext())->first();
+        if (!$rootCategory) {
+            throw new \RuntimeException('Root category not found');
+        }
+
+        return $rootCategory->getId();
     }
 }

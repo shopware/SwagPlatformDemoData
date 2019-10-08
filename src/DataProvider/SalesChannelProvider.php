@@ -2,13 +2,19 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\FetchMode;
 
 class SalesChannelProvider extends DemoDataProvider
 {
-    public function getPriority(): int
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection)
     {
-        return 300;
+        $this->connection = $connection;
     }
 
     public function getAction(): string

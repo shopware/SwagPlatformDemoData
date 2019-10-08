@@ -2,13 +2,19 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
 use Shopware\Core\Defaults;
 
 class CustomerProvider extends DemoDataProvider
 {
-    public function getPriority(): int
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Connection $connection)
     {
-        return 800;
+        $this->connection = $connection;
     }
 
     public function getAction(): string

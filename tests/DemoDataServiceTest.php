@@ -15,10 +15,7 @@ class DemoDataServiceTest extends TestCase
 
     public function testGenerate(): void
     {
-        $demoDataService = new DemoDataService(
-            $this->getContainer()->get(Connection::class),
-            $this->getContainer()->get(SyncController::class)
-        );
+        $demoDataService = $this->getContainer()->get(DemoDataService::class);
 
         $demoDataService->generate($this->getContainer(), Context::createDefaultContext());
 

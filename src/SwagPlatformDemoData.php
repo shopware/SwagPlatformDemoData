@@ -2,33 +2,26 @@
 
 namespace Swag\PlatformDemoData;
 
-use Doctrine\DBAL\Connection;
-use Shopware\Core\Framework\Api\Controller\SyncController;
-use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Plugin;
-use Shopware\Core\Framework\Plugin\Context\InstallContext;
+use Shopware\Core\Framework\Plugin\Context\ActivateContext;
 
 class SwagPlatformDemoData extends Plugin
 {
-    public function install(InstallContext $context): void
+    /**
+     * @var DemoDataService
+     */
+    private $demoDataService;
+
+    public function activate(ActivateContext $context): void
     {
-        $this->importDemoData($context->getContext());
-        $this->clearCache();
+        $this->demoDataService->generate($context->getContext());
     }
 
-    private function importDemoData(Context $context): void
+    /**
+     * @required
+     */
+    public function setDemoDataService(DemoDataService $demoDataService): void
     {
-        $demoDataService = new DemoDataService(
-            $this->container->get(Connection::class),
-            $this->container->get(SyncController::class)
-        );
-
-        $demoDataService->generate($this->container, $context);
-    }
-
-    private function clearCache(): void
-    {
-        $cache = $this->container->get('shopware.cache');
-        $cache->clear();
+        $this->demoDataService = $demoDataService;
     }
 }
