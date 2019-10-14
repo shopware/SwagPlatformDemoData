@@ -15,6 +15,7 @@ class CategoryProvider extends DemoDataProvider
      * @var EntityRepositoryInterface
      */
     private $categoryRepository;
+
     /**
      * @var Connection
      */
@@ -179,7 +180,7 @@ class CategoryProvider extends DemoDataProvider
 
     private function getDefaultCmsListingPageId(): string
     {
-        $result = $connection->fetchColumn('
+        $result = $this->connection->fetchColumn('
                 SELECT cms_page_id
                 FROM cms_page_translation
                 INNER JOIN cms_page ON cms_page.id = cms_page_translation.cms_page_id
