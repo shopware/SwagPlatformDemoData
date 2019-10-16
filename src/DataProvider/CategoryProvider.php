@@ -8,6 +8,7 @@ use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 class CategoryProvider extends DemoDataProvider
 {
@@ -193,6 +194,6 @@ class CategoryProvider extends DemoDataProvider
             throw new \RuntimeException('Default Cms Listing page not found');
         }
 
-        return (string) $result;
+        return Uuid::fromBytesToHex((string) $result);
     }
 }
