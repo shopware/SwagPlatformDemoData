@@ -4,6 +4,7 @@ namespace Swag\PlatformDemoData;
 
 use Shopware\Core\Framework\Api\Controller\SyncController;
 use Shopware\Core\Framework\Context;
+use Shopware\Core\PlatformRequest;
 use Swag\PlatformDemoData\DataProvider\DemoDataProvider;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -37,7 +38,7 @@ class DemoDataService
                 ]
             ];
 
-            $response  = $this->sync->sync(new Request([], [], [], [], [], [], json_encode($payload)), $context);
+            $response  = $this->sync->sync(new Request([], [], [], [], [], [], json_encode($payload)), $context, PlatformRequest::API_VERSION);
             $result = json_decode($response->getContent(), true);
 
             if (isset($result['errors']) && count($result['errors']) > 0) {
