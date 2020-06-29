@@ -57,11 +57,11 @@ class CustomerProvider extends DemoDataProvider
                     'lastName' => 'Mustermann',
                     'street' => 'Musterstraße 1',
                     'zipcode' => '12345',
-                    'city' => 'Musterstadt'
+                    'city' => 'Musterstadt',
                 ],
                 'defaultBillingAddressId' => 'd8f0dff7ef3947979a83c42f6509f22c',
-                'groupId' => Defaults::FALLBACK_CUSTOMER_GROUP
-            ]
+                'groupId' => Defaults::FALLBACK_CUSTOMER_GROUP,
+            ],
         ];
     }
 

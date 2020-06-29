@@ -29,6 +29,7 @@ class RuleProvider extends DemoDataProvider
     public function getPayload(): array
     {
         $usaId = $this->getCountryIdByIsoCode('US');
+
         return [
             [
                 'id' => '28caae75a5624f0d985abd0eb32aa160',
@@ -45,14 +46,14 @@ class RuleProvider extends DemoDataProvider
                                         'type' => 'customerCustomerGroup',
                                         'value' => [
                                             'operator' => '=',
-                                            'customerGroupIds' => ['cfbd5018d38d41d8adca10d94fc8bdd6']
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'customerGroupIds' => ['cfbd5018d38d41d8adca10d94fc8bdd6'],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             [
                 'id' => '3858957016644de4ae48c0500bf3ccc8',
@@ -69,14 +70,14 @@ class RuleProvider extends DemoDataProvider
                                         'type' => 'cartCartAmount',
                                         'value' => [
                                             'operator' => '>=',
-                                            'amount' => 0
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'amount' => 0,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             [
                 'id' => '3cf541369e6d4a2fa70aa8687a65fc2d',
@@ -93,14 +94,14 @@ class RuleProvider extends DemoDataProvider
                                         'type' => 'dayOfWeek',
                                         'value' => [
                                             'operator' => '=',
-                                            'dayOfWeek' => 7
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'dayOfWeek' => 7,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             [
                 'id' => 'a62e1f6a1a0b4519af401b6270a37149',
@@ -117,14 +118,14 @@ class RuleProvider extends DemoDataProvider
                                         'type' => 'customerBillingCountry',
                                         'value' => [
                                             'operator' => '=',
-                                            'countryIds' => [$usaId]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'countryIds' => [$usaId],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             [
                 'id' => 'e1378db7808a478f919e0d740d5d6c1a',
@@ -141,15 +142,15 @@ class RuleProvider extends DemoDataProvider
                                         'type' => 'cartCartAmount',
                                         'value' => [
                                             'operator' => '>=',
-                                            'amount' => 0
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                            'amount' => 0,
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

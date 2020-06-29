@@ -2,8 +2,8 @@
 
 namespace Swag\PlatformDemoDataTests;
 
-use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 use PHPUnit\Framework\TestCase;
+use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 use Symfony\Component\Finder\Finder;
 
 class UsedClassesAvailableTest extends TestCase
@@ -23,7 +23,7 @@ class UsedClassesAvailableTest extends TestCase
         }
 
         // Nothing broke so far, classes seem to be instantiable
-        $this->assertTrue(true);
+        static::assertTrue(true);
     }
 
     private function getPluginClasses(): Finder
@@ -31,6 +31,7 @@ class UsedClassesAvailableTest extends TestCase
         $finder = new Finder();
         $finder->in(realpath(__DIR__ . '/../'));
         $finder->exclude('Test');
+
         return $finder->files()->name('*.php');
     }
 }

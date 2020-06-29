@@ -20,6 +20,8 @@
         </service>
 
         <service id="Swag\PlatformDemoData\DataProvider\CmsPageProvider">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+
             <tag name="swag.demo_data.data_provider" priority="1000" />
         </service>
 
@@ -43,6 +45,8 @@
         </service>
 
         <service id="Swag\PlatformDemoData\DataProvider\PropertyProvider">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+
             <tag name="swag.demo_data.data_provider" priority="500" />
         </service>
 

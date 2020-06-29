@@ -2,7 +2,6 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
-use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Context;
 
 abstract class DemoDataProvider
@@ -14,5 +13,6 @@ abstract class DemoDataProvider
     abstract public function getPayload(): array;
 
     public function finalize(Context $context): void
-    {}
+    {
+    }
 }
