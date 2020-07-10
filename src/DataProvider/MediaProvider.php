@@ -77,7 +77,6 @@ class MediaProvider extends DemoDataProvider
                 'id' => 'de4b7dbe9d95435092cb85ce146ced28',
                 'mediaFolderId' => $cmsFolder,
             ],
-
         ];
     }
 

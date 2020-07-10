@@ -34,7 +34,7 @@ class ShippingMethodProvider extends DemoDataProvider
         foreach ($this->getShippingMethodIds() as $shippingMethodId) {
             $payload[] = [
                 'id' => $shippingMethodId,
-                'availabilityRuleId' => $ruleId
+                'availabilityRuleId' => $ruleId,
             ];
         }
 

@@ -6,6 +6,7 @@ use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Uuid\Uuid;
+use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
 class ProductProvider extends DemoDataProvider
 {
@@ -16,9 +17,15 @@ class ProductProvider extends DemoDataProvider
      */
     private $connection;
 
-    public function __construct(Connection $connection)
+    /**
+     * @var TranslationHelper
+     */
+    private $translationHelper;
+
+    public function __construct(\Doctrine\DBAL\Connection $connection)
     {
         $this->connection = $connection;
+        $this->translationHelper = new TranslationHelper($connection);
     }
 
     public function getAction(): string
@@ -53,33 +60,33 @@ class ProductProvider extends DemoDataProvider
                 'length' => 840.0,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit erweiterten Preisen',
-                    'en-GB' => 'Main product with advanced prices'
-                ],
-                'description' => [
+                    'en-GB' => 'Main product with advanced prices',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturer' => [
                     'id' => 'cc1c20c365d34cfb88bfab3c3e81d350',
-                    'name' => [
+                    'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Freizeit',
-                        'en-GB' => 'Shopware Freetime'
-                    ]
+                        'en-GB' => 'Shopware Freetime',
+                    ]),
                 ],
                 'media' => [
                     [
                         'id' => '84356a71233d4b3e9f417dcc8850c82f',
                         'position' => 1,
-                        'mediaId' => '84356a71233d4b3e9f417dcc8850c82f'
-                    ]
+                        'mediaId' => '84356a71233d4b3e9f417dcc8850c82f',
+                    ],
                 ],
                 'coverId' => '84356a71233d4b3e9f417dcc8850c82f',
                 'categories' => [
                     [
-                        'id' => '251448b91bc742de85643f5fccd89051'
-                    ]
+                        'id' => '251448b91bc742de85643f5fccd89051',
+                    ],
                 ],
                 'price' => [[
                     'net' => 798.3199999999999,
@@ -97,7 +104,7 @@ class ProductProvider extends DemoDataProvider
                             'currencyId' => Defaults::CURRENCY,
                         ]],
                         'quantityStart' => 12,
-                        'quantityEnd' => null
+                        'quantityEnd' => null,
                     ],
                     [
                         'ruleId' => '28caae75a5624f0d985abd0eb32aa160',
@@ -108,15 +115,15 @@ class ProductProvider extends DemoDataProvider
                             'currencyId' => Defaults::CURRENCY,
                         ]],
                         'quantityStart' => 1,
-                        'quantityEnd' => 11
-                    ]
+                        'quantityEnd' => 11,
+                    ],
                 ],
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
-                ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
+                ],
             ],
             [
                 'id' => '1901dc5e888f4b1ea4168c2c5f005540',
@@ -130,33 +137,33 @@ class ProductProvider extends DemoDataProvider
                 'purchasePrice' => 1.99,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Bewertungen',
-                    'en-GB' => 'Main product with reviews'
-                ],
-                'description' => [
+                    'en-GB' => 'Main product with reviews',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturer' => [
                     'id' => '2326d67406134c88bcf80e52d9d2ecb7',
-                    'name' => [
+                    'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Lebensmittel',
-                        'en-GB' => 'Shopware Food'
-                    ]
+                        'en-GB' => 'Shopware Food',
+                    ]),
                 ],
                 'media' => [
                     [
                         'id' => '6968ad64888844679918c638e449ffc5',
                         'position' => 1,
-                        'mediaId' => '6968ad64888844679918c638e449ffc5'
-                    ]
+                        'mediaId' => '6968ad64888844679918c638e449ffc5',
+                    ],
                 ],
                 'coverId' => '6968ad64888844679918c638e449ffc5',
                 'categories' => [
                     [
-                        'id' => 'bb22b05bff9140f3808b1cff975b75eb'
-                    ]
+                        'id' => 'bb22b05bff9140f3808b1cff975b75eb',
+                    ],
                 ],
                 'price' => [[
                     'net' => 1.67,
@@ -167,17 +174,17 @@ class ProductProvider extends DemoDataProvider
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
                 ],
                 'properties' => [
                     [
-                        'id' => '22bdaee755804c1d8099c0d3696e852c'
+                        'id' => '22bdaee755804c1d8099c0d3696e852c',
                     ],
                     [
-                        'id' => '77421c4f75af40c8a57657cdc2ad49a2'
+                        'id' => '77421c4f75af40c8a57657cdc2ad49a2',
                     ],
-                ]
+                ],
             ],
             [
                 'id' => '2a88d9b59d474c7e869d8071649be43c',
@@ -192,33 +199,33 @@ class ProductProvider extends DemoDataProvider
                 'weight' => 0.17,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptartikel',
-                    'en-GB' => 'Main product'
-                ],
-                'description' => [
+                    'en-GB' => 'Main product',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturer' => [
                     'id' => '7f24e96676e944b0a0addc20d56728cb',
-                    'name' => [
+                    'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Kleidung',
-                        'en-GB' => 'Shopware Fashion'
-                    ]
+                        'en-GB' => 'Shopware Fashion',
+                    ]),
                 ],
                 'media' => [
                     [
                         'id' => '70e352200b5c45098dc65a5b47094a2a',
                         'position' => 1,
-                        'mediaId' => '70e352200b5c45098dc65a5b47094a2a'
-                    ]
+                        'mediaId' => '70e352200b5c45098dc65a5b47094a2a',
+                    ],
                 ],
                 'coverId' => '70e352200b5c45098dc65a5b47094a2a',
                 'categories' => [
                     [
-                        'id' => '251448b91bc742de85643f5fccd89051'
-                    ]
+                        'id' => '251448b91bc742de85643f5fccd89051',
+                    ],
                 ],
                 'price' => [[
                     'net' => 416.76,
@@ -229,23 +236,23 @@ class ProductProvider extends DemoDataProvider
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
                 ],
                 'properties' => [
                     [
-                        'id' => '6f9359239c994b48b7de282ee19a714d'
+                        'id' => '6f9359239c994b48b7de282ee19a714d',
                     ],
                     [
-                        'id' => '78c53f3f6dd14eb4927978415bfb74db'
+                        'id' => '78c53f3f6dd14eb4927978415bfb74db',
                     ],
                     [
-                        'id' => '7cab88165ae5420f921232511b6e8f7d'
+                        'id' => '7cab88165ae5420f921232511b6e8f7d',
                     ],
                     [
-                        'id' => 'dc6f98beeca44852beb078a9e8e21e7d'
+                        'id' => 'dc6f98beeca44852beb078a9e8e21e7d',
                     ],
-                ]
+                ],
             ],
             [
                 'id' => '3ac014f329884b57a2cce5a29f34779c',
@@ -260,27 +267,27 @@ class ProductProvider extends DemoDataProvider
                 'weight' => 0.15,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt, versandkostenfrei mit Hervorhebung',
-                    'en-GB' => 'Main product, free shipping with highlighting'
-                ],
-                'description' => [
+                    'en-GB' => 'Main product, free shipping with highlighting',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturerId' => 'cc1c20c365d34cfb88bfab3c3e81d350',
                 'media' => [
                     [
                         'id' => '2de02991cd0548a4ac6cc35cb11773a0',
                         'position' => 1,
-                        'mediaId' => '2de02991cd0548a4ac6cc35cb11773a0'
-                    ]
+                        'mediaId' => '2de02991cd0548a4ac6cc35cb11773a0',
+                    ],
                 ],
                 'coverId' => '2de02991cd0548a4ac6cc35cb11773a0',
                 'categories' => [
                     [
-                        'id' => '2185182cbbd4462ea844abeb2a438b33'
-                    ]
+                        'id' => '2185182cbbd4462ea844abeb2a438b33',
+                    ],
                 ],
                 'price' => [[
                     'net' => 15,
@@ -291,20 +298,20 @@ class ProductProvider extends DemoDataProvider
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
                 ],
                 'properties' => [
                     [
-                        'id' => '5997d91dc0784997bdef68dfc5a08912'
+                        'id' => '5997d91dc0784997bdef68dfc5a08912',
                     ],
                     [
-                        'id' => '78c53f3f6dd14eb4927978415bfb74db'
+                        'id' => '78c53f3f6dd14eb4927978415bfb74db',
                     ],
                     [
-                        'id' => 'c53fa30db00e4a84b4516f6b07c02e8d'
+                        'id' => 'c53fa30db00e4a84b4516f6b07c02e8d',
                     ],
-                ]
+                ],
             ],
             [
                 'id' => '43a23e0c03bf4ceabc6055a2185faa87',
@@ -319,27 +326,27 @@ class ProductProvider extends DemoDataProvider
                 'weight' => 0.5,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Variantenprodukt',
-                    'en-GB' => 'Variant product'
-                ],
-                'description' => [
+                    'en-GB' => 'Variant product',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
                     [
                         'id' => '102ac62ba27347a688030a05c1790db7',
                         'position' => 1,
-                        'mediaId' => '102ac62ba27347a688030a05c1790db7'
-                    ]
+                        'mediaId' => '102ac62ba27347a688030a05c1790db7',
+                    ],
                 ],
                 'coverId' => '102ac62ba27347a688030a05c1790db7',
                 'categories' => [
                     [
-                        'id' => '8de9b484c54f441c894774e5f57e485c'
-                    ]
+                        'id' => '8de9b484c54f441c894774e5f57e485c',
+                    ],
                 ],
                 'price' => [[
                     'net' => 16.799999999999997,
@@ -350,21 +357,21 @@ class ProductProvider extends DemoDataProvider
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
                 ],
                 'properties' => [
                     [
-                        'id' => '5997d91dc0784997bdef68dfc5a08912'
+                        'id' => '5997d91dc0784997bdef68dfc5a08912',
                     ],
                     [
-                        'id' => '7cab88165ae5420f921232511b6e8f7d'
+                        'id' => '7cab88165ae5420f921232511b6e8f7d',
                     ],
                     [
-                        'id' => '96638a1c7ab847bbb3ca64167ab30a3e'
+                        'id' => '96638a1c7ab847bbb3ca64167ab30a3e',
                     ],
                     [
-                        'id' => 'acfd7586d02848f1ac801f4776efa414'
+                        'id' => 'acfd7586d02848f1ac801f4776efa414',
                     ],
                 ],
                 'configuratorSettings' => [
@@ -373,19 +380,19 @@ class ProductProvider extends DemoDataProvider
                     ],
                     [
                         'optionId' => '2bfd278e87204807a890da4a3e81dd90',
-                        'mediaId' => '6cbbdc03b43f4207be80b5f752d5a1c4'
+                        'mediaId' => '6cbbdc03b43f4207be80b5f752d5a1c4',
                     ],
                     [
                         'optionId' => '5997d91dc0784997bdef68dfc5a08912',
                     ],
                     [
                         'optionId' => '52454db2adf942b2ac079a296f454a10',
-                        'mediaId' => 'f69ab8ae42d04e17b2bab5ec2ff0a93c'
+                        'mediaId' => 'f69ab8ae42d04e17b2bab5ec2ff0a93c',
                     ],
                     [
                         'optionId' => 'ad735af1ebfb421e93e408b073c4a89a',
-                        'mediaId' => '102ac62ba27347a688030a05c1790db7'
-                    ]
+                        'mediaId' => '102ac62ba27347a688030a05c1790db7',
+                    ],
                 ],
                 'children' => [
                     [
@@ -393,74 +400,74 @@ class ProductProvider extends DemoDataProvider
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '2bfd278e87204807a890da4a3e81dd90'
+                                'id' => '2bfd278e87204807a890da4a3e81dd90',
                             ],
                             [
-                                'id' => '5997d91dc0784997bdef68dfc5a08912'
-                            ]
-                        ]
+                                'id' => '5997d91dc0784997bdef68dfc5a08912',
+                            ],
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10005.2',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '2bfd278e87204807a890da4a3e81dd90'
+                                'id' => '2bfd278e87204807a890da4a3e81dd90',
                             ],
                             [
-                                'id' => 'acfd7586d02848f1ac801f4776efa414'
-                            ]
-                        ]
+                                'id' => 'acfd7586d02848f1ac801f4776efa414',
+                            ],
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10005.3',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '52454db2adf942b2ac079a296f454a10'
+                                'id' => '52454db2adf942b2ac079a296f454a10',
                             ],
                             [
-                                'id' => '5997d91dc0784997bdef68dfc5a08912'
-                            ]
-                        ]
+                                'id' => '5997d91dc0784997bdef68dfc5a08912',
+                            ],
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10005.4',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '52454db2adf942b2ac079a296f454a10'
+                                'id' => '52454db2adf942b2ac079a296f454a10',
                             ],
                             [
-                                'id' => 'acfd7586d02848f1ac801f4776efa414'
-                            ]
-                        ]
+                                'id' => 'acfd7586d02848f1ac801f4776efa414',
+                            ],
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10005.5',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => 'ad735af1ebfb421e93e408b073c4a89a'
+                                'id' => 'ad735af1ebfb421e93e408b073c4a89a',
                             ],
                             [
-                                'id' => '5997d91dc0784997bdef68dfc5a08912'
-                            ]
-                        ]
+                                'id' => '5997d91dc0784997bdef68dfc5a08912',
+                            ],
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10005.6',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => 'ad735af1ebfb421e93e408b073c4a89a'
+                                'id' => 'ad735af1ebfb421e93e408b073c4a89a',
                             ],
                             [
-                                'id' => 'acfd7586d02848f1ac801f4776efa414'
-                            ]
-                        ]
-                    ]
-                ]
+                                'id' => 'acfd7586d02848f1ac801f4776efa414',
+                            ],
+                        ],
+                    ],
+                ],
             ],
             [
                 'id' => 'c7bca22753c84d08b6178a50052b4146',
@@ -474,27 +481,27 @@ class ProductProvider extends DemoDataProvider
                 'purchasePrice' => 19.99,
                 'releaseDate' => new \DateTimeImmutable(),
                 'displayInListing' => true,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Eigenschaften',
-                    'en-GB' => 'Main product with properties'
-                ],
-                'description' => [
+                    'en-GB' => 'Main product with properties',
+                ]),
+                'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
-                    'en-GB' => self::LOREM_IPSUM
-                ],
+                    'en-GB' => self::LOREM_IPSUM,
+                ]),
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
                     [
                         'id' => '5808d194947f415495d9782d8fdc92ae',
                         'position' => 1,
-                        'mediaId' => '5808d194947f415495d9782d8fdc92ae'
-                    ]
+                        'mediaId' => '5808d194947f415495d9782d8fdc92ae',
+                    ],
                 ],
                 'coverId' => '5808d194947f415495d9782d8fdc92ae',
                 'categories' => [
                     [
-                        'id' => '2185182cbbd4462ea844abeb2a438b33'
-                    ]
+                        'id' => '2185182cbbd4462ea844abeb2a438b33',
+                    ],
                 ],
                 'price' => [[
                     'net' => 16.799999999999997,
@@ -505,30 +512,30 @@ class ProductProvider extends DemoDataProvider
                 'visibilities' => [
                     [
                         'salesChannelId' => $storefrontSalesChannel,
-                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL
-                    ]
+                        'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
+                    ],
                 ],
                 'properties' => [
                     [
-                        'id' => '41e5013b67d64d3a92b7a275da8af441'
+                        'id' => '41e5013b67d64d3a92b7a275da8af441',
                     ],
                     [
-                        'id' => '5193ffa5de8648a1bcfba1fa8a26c02b'
+                        'id' => '5193ffa5de8648a1bcfba1fa8a26c02b',
                     ],
                     [
-                        'id' => '54147692cbfb43419a6d11e26cad44dc'
+                        'id' => '54147692cbfb43419a6d11e26cad44dc',
                     ],
                     [
-                        'id' => '5997d91dc0784997bdef68dfc5a08912'
+                        'id' => '5997d91dc0784997bdef68dfc5a08912',
                     ],
                     [
-                        'id' => '78c53f3f6dd14eb4927978415bfb74db'
+                        'id' => '78c53f3f6dd14eb4927978415bfb74db',
                     ],
                     [
-                        'id' => '96638a1c7ab847bbb3ca64167ab30a3e'
+                        'id' => '96638a1c7ab847bbb3ca64167ab30a3e',
                     ],
                     [
-                        'id' => 'acfd7586d02848f1ac801f4776efa414'
+                        'id' => 'acfd7586d02848f1ac801f4776efa414',
                     ],
                 ],
                 'configuratorSettings' => [
@@ -551,39 +558,39 @@ class ProductProvider extends DemoDataProvider
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '41e5013b67d64d3a92b7a275da8af441'
+                                'id' => '41e5013b67d64d3a92b7a275da8af441',
                             ],
-                        ]
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10007.2',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '54147692cbfb43419a6d11e26cad44dc'
+                                'id' => '54147692cbfb43419a6d11e26cad44dc',
                             ],
-                        ]
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10007.3',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => '5997d91dc0784997bdef68dfc5a08912'
+                                'id' => '5997d91dc0784997bdef68dfc5a08912',
                             ],
-                        ]
+                        ],
                     ],
                     [
                         'productNumber' => 'SWDEMO10007.4',
                         'stock' => 50,
                         'options' => [
                             [
-                                'id' => 'acfd7586d02848f1ac801f4776efa414'
+                                'id' => 'acfd7586d02848f1ac801f4776efa414',
                             ],
-                        ]
+                        ],
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

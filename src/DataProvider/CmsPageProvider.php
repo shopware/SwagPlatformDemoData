@@ -3,9 +3,20 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Shopware\Core\Content\Cms\DataResolver\FieldConfig;
+use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
 class CmsPageProvider extends DemoDataProvider
 {
+    /**
+     * @var TranslationHelper
+     */
+    private $translationHelper;
+
+    public function __construct(\Doctrine\DBAL\Connection $connection)
+    {
+        $this->translationHelper = new TranslationHelper($connection);
+    }
+
     public function getAction(): string
     {
         return 'upsert';
@@ -23,10 +34,10 @@ class CmsPageProvider extends DemoDataProvider
                 'id' => '695477e02ef643e5a016b83ed4cdf63a',
                 'type' => 'landingpage',
                 'locked' => 0,
-                'name' => [
+                'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Startseite',
-                    'en-GB' => 'Homepage'
-                ],
+                    'en-GB' => 'Homepage',
+                ]),
                 'sections' => [
                     [
                         'id' => '935477e02ef643e5a016b83ed4cdf63a',
@@ -44,8 +55,8 @@ class CmsPageProvider extends DemoDataProvider
                                         'type' => 'image',
                                         'slot' => 'image',
                                         'locked' => 0,
-                                        'translations' => [
-                                            'de-De' => [
+                                        'translations' => $this->translationHelper->adjustTranslations([
+                                            'de-DE' => [
                                                 'config' => [
                                                     'url' => [
                                                         'value' => null,
@@ -67,7 +78,7 @@ class CmsPageProvider extends DemoDataProvider
                                                         'value' => 'standard',
                                                         'source' => FieldConfig::SOURCE_STATIC,
                                                     ],
-                                                ]
+                                                ],
                                             ],
                                             'en-GB' => [
                                                 'config' => [
@@ -91,16 +102,16 @@ class CmsPageProvider extends DemoDataProvider
                                                         'value' => 'standard',
                                                         'source' => FieldConfig::SOURCE_STATIC,
                                                     ],
-                                                ]
+                                                ],
                                             ],
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
+                                        ]),
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
-            ]
+            ],
         ];
     }
 }

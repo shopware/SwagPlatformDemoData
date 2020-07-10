@@ -33,7 +33,7 @@ class SalesChannelProvider extends DemoDataProvider
         foreach ($this->getSalesChannelIds() as $salesChannelId) {
             $payload[] = [
                 'id' => $salesChannelId,
-                'navigationCategoryId' => 'f9aa6920eb7d44c7a516a38ed68fcc35'
+                'navigationCategoryId' => 'f9aa6920eb7d44c7a516a38ed68fcc35',
             ];
         }
 
