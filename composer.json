@@ -21,6 +21,14 @@
         "description": {
             "de-DE": "Demodaten Plugin für Shopware 6. Nicht in Produktiv-Umgebungen nutzen!",
             "en-GB": "Demo data plugin for Shopware 6. Do not use in production environments!"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/shopware-ag.html",
+            "en-GB": "https://store.shopware.com/en/shopware-ag.html"
+        },
+        "supportLink": {
+            "de-DE": "https://docs.shopware.com/de",
+            "en-GB": "https://docs.shopware.com/en"
         }
     },
     "autoload": {
