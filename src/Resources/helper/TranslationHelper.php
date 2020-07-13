@@ -11,7 +11,7 @@ class TranslationHelper
 
     public function __construct(\Doctrine\DBAL\Connection $connection)
     {
-        $this->dbHelper = new dbHelper($connection);
+        $this->dbHelper = new DbHelper($connection);
     }
 
     public function adjustTranslations(array $translations): array
