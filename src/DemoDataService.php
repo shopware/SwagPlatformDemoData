@@ -7,6 +7,7 @@ use Shopware\Core\Framework\Context;
 use Shopware\Core\PlatformRequest;
 use Swag\PlatformDemoData\DataProvider\DemoDataProvider;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class DemoDataService
 {
@@ -20,10 +21,21 @@ class DemoDataService
      */
     private $demoDataProvider;
 
-    public function __construct(SyncController $sync, iterable $demoDataProvider)
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+    /**
+     * @var string
+     */
+    private $env;
+
+    public function __construct(SyncController $sync, iterable $demoDataProvider, RequestStack $requestStack, string $env)
     {
         $this->sync = $sync;
         $this->demoDataProvider = $demoDataProvider;
+        $this->requestStack = $requestStack;
+        $this->env = $env;
     }
 
     public function generate(Context $context): void
@@ -38,11 +50,20 @@ class DemoDataService
                 ],
             ];
 
-            $response = $this->sync->sync(new Request([], [], [], [], [], [], json_encode($payload)), $context, PlatformRequest::API_VERSION);
+            $request = new Request([], [], [], [], [], [], json_encode($payload));
+            // ignore deprecations in prod
+            if ($this->env !== 'prod') {
+                $request->headers->set(PlatformRequest::HEADER_IGNORE_DEPRECATIONS, 'true');
+            }
+
+            $this->requestStack->push($request);
+            $response = $this->sync->sync($request, $context, PlatformRequest::API_VERSION);
+            $this->requestStack->pop();
+
             $result = json_decode($response->getContent(), true);
 
-            if (isset($result['errors']) && count($result['errors']) > 0) {
-                throw new \RuntimeException(sprintf('Error importing "%s": %s', $dataProvider->getEntity(), print_r($result['errors'], true)));
+            if ($response->getStatusCode() >= 400) {
+                throw new \RuntimeException(sprintf('Error importing "%s": %s', $dataProvider->getEntity(), print_r($result, true)));
             }
 
             $dataProvider->finalize($context);
