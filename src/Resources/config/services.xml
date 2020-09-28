@@ -10,6 +10,8 @@
         <service id="Swag\PlatformDemoData\DemoDataService">
             <argument type="service" id="Shopware\Core\Framework\Api\Controller\SyncController"/>
             <argument type="tagged" tag="swag.demo_data.data_provider" />
+            <argument type="service" id="request_stack" />
+            <argument>%kernel.environment%</argument>
         </service>
 
         <service id="Swag\PlatformDemoData\DataProvider\MediaProvider">
@@ -54,12 +56,6 @@
             <argument type="service" id="Doctrine\DBAL\Connection"/>
 
             <tag name="swag.demo_data.data_provider" priority="400" />
-        </service>
-
-        <service id="Swag\PlatformDemoData\DataProvider\SalesChannelProvider">
-            <argument type="service" id="Doctrine\DBAL\Connection"/>
-
-            <tag name="swag.demo_data.data_provider" priority="300" />
         </service>
 
         <service id="Swag\PlatformDemoData\DataProvider\ShippingMethodProvider">
