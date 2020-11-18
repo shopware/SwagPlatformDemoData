@@ -77,12 +77,12 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'media' => [
                     [
-                        'id' => '84356a71233d4b3e9f417dcc8850c82f',
+                        'id' => 'e648140ff1f04177b40128ac6b649d8a',
                         'position' => 1,
                         'mediaId' => '84356a71233d4b3e9f417dcc8850c82f',
                     ],
                 ],
-                'coverId' => '84356a71233d4b3e9f417dcc8850c82f',
+                'coverId' => 'e648140ff1f04177b40128ac6b649d8a',
                 'categories' => [
                     [
                         'id' => '251448b91bc742de85643f5fccd89051',
@@ -154,12 +154,12 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'media' => [
                     [
-                        'id' => '6968ad64888844679918c638e449ffc5',
+                        'id' => '0ca83b27e34c4b1f9ab00aed4e3b8b03',
                         'position' => 1,
                         'mediaId' => '6968ad64888844679918c638e449ffc5',
                     ],
                 ],
-                'coverId' => '6968ad64888844679918c638e449ffc5',
+                'coverId' => '0ca83b27e34c4b1f9ab00aed4e3b8b03',
                 'categories' => [
                     [
                         'id' => 'bb22b05bff9140f3808b1cff975b75eb',
@@ -216,12 +216,12 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'media' => [
                     [
-                        'id' => '70e352200b5c45098dc65a5b47094a2a',
+                        'id' => 'f0e28db1195847dc9acb8eb016473e0c',
                         'position' => 1,
                         'mediaId' => '70e352200b5c45098dc65a5b47094a2a',
                     ],
                 ],
-                'coverId' => '70e352200b5c45098dc65a5b47094a2a',
+                'coverId' => 'f0e28db1195847dc9acb8eb016473e0c',
                 'categories' => [
                     [
                         'id' => '251448b91bc742de85643f5fccd89051',
@@ -278,12 +278,12 @@ class ProductProvider extends DemoDataProvider
                 'manufacturerId' => 'cc1c20c365d34cfb88bfab3c3e81d350',
                 'media' => [
                     [
-                        'id' => '2de02991cd0548a4ac6cc35cb11773a0',
+                        'id' => 'd6448ce8dd0e4720a92c1bdddb9e6c96',
                         'position' => 1,
                         'mediaId' => '2de02991cd0548a4ac6cc35cb11773a0',
                     ],
                 ],
-                'coverId' => '2de02991cd0548a4ac6cc35cb11773a0',
+                'coverId' => 'd6448ce8dd0e4720a92c1bdddb9e6c96',
                 'categories' => [
                     [
                         'id' => '2185182cbbd4462ea844abeb2a438b33',
@@ -337,12 +337,12 @@ class ProductProvider extends DemoDataProvider
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
                     [
-                        'id' => '102ac62ba27347a688030a05c1790db7',
+                        'id' => '55a1e7d9f9e84400a17e2b86d7a3fc89',
                         'position' => 1,
                         'mediaId' => '102ac62ba27347a688030a05c1790db7',
                     ],
                 ],
-                'coverId' => '102ac62ba27347a688030a05c1790db7',
+                'coverId' => '55a1e7d9f9e84400a17e2b86d7a3fc89',
                 'categories' => [
                     [
                         'id' => '8de9b484c54f441c894774e5f57e485c',
@@ -492,12 +492,12 @@ class ProductProvider extends DemoDataProvider
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
                     [
-                        'id' => '5808d194947f415495d9782d8fdc92ae',
+                        'id' => '683c3a0a0c26464fb65332d1a9adf7e2',
                         'position' => 1,
                         'mediaId' => '5808d194947f415495d9782d8fdc92ae',
                     ],
                 ],
-                'coverId' => '5808d194947f415495d9782d8fdc92ae',
+                'coverId' => '683c3a0a0c26464fb65332d1a9adf7e2',
                 'categories' => [
                     [
                         'id' => '2185182cbbd4462ea844abeb2a438b33',
