@@ -1,7 +1,7 @@
 {
     "name": "swag/demo-data",
     "description": "Plugin including demo data",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "type": "shopware-platform-plugin",
     "license": "MIT",
     "authors": [
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "shopware/core": "*"
+        "shopware/core": "^6.4"
     },
     "extra": {
         "shopware-plugin-class": "Swag\\PlatformDemoData\\SwagPlatformDemoData",
