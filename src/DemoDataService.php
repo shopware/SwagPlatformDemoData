@@ -57,7 +57,7 @@ class DemoDataService
             }
 
             $this->requestStack->push($request);
-            $response = $this->sync->sync($request, $context, PlatformRequest::API_VERSION);
+            $response = $this->sync->sync($request, $context);
             $this->requestStack->pop();
 
             $result = json_decode($response->getContent(), true);
