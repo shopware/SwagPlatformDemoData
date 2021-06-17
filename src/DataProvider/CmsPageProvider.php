@@ -52,6 +52,7 @@ class CmsPageProvider extends DemoDataProvider
                                 'backgroundMediaMode' => 'cover',
                                 'slots' => [
                                     [
+                                        'id' => '9e2f55fac84647098fe5b0f17ee4786f',
                                         'type' => 'image',
                                         'slot' => 'image',
                                         'locked' => 0,
