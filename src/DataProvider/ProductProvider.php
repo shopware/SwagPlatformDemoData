@@ -120,6 +120,7 @@ class ProductProvider extends DemoDataProvider
                 ],
                 'visibilities' => [
                     [
+                        'id' => '69cd1be4be004944b923ddbe571e96f5',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
@@ -173,6 +174,7 @@ class ProductProvider extends DemoDataProvider
                 ]],
                 'visibilities' => [
                     [
+                        'id' => '161494e90196481da9fd9a99e1462706',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
@@ -235,6 +237,7 @@ class ProductProvider extends DemoDataProvider
                 ]],
                 'visibilities' => [
                     [
+                        'id' => 'c835fb65b685416196fbae58a508b82a',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
@@ -297,6 +300,7 @@ class ProductProvider extends DemoDataProvider
                 ]],
                 'visibilities' => [
                     [
+                        'id' => '055eac2f437c4e2c9a423c268f6b9ebb',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
@@ -356,6 +360,7 @@ class ProductProvider extends DemoDataProvider
                 ]],
                 'visibilities' => [
                     [
+                        'id' => '6c6041a1de0940378ab05ad4ca892745',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
@@ -511,6 +516,7 @@ class ProductProvider extends DemoDataProvider
                 ]],
                 'visibilities' => [
                     [
+                        'id' => '8aae932871634fe8a6f485da0d9df6cd',
                         'salesChannelId' => $storefrontSalesChannel,
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],

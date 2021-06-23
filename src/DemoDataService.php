@@ -55,6 +55,7 @@ class DemoDataService
             if ($this->env !== 'prod') {
                 $request->headers->set(PlatformRequest::HEADER_IGNORE_DEPRECATIONS, 'true');
             }
+            $request->headers->set(PlatformRequest::HEADER_FAIL_ON_ERROR, 'false');
 
             $this->requestStack->push($request);
             $response = $this->sync->sync($request, $context);
@@ -67,6 +68,48 @@ class DemoDataService
             }
 
             $dataProvider->finalize($context);
+        }
+    }
+
+    public function delete(Context $context): void
+    {
+        /** @var DemoDataProvider $dataProvider */
+        foreach ($this->demoDataProvider as $dataProvider) {
+            $payloadsIds = [];
+            foreach ($dataProvider->getPayload() as $entry) {
+                if ($dataProvider->getEntity() === 'category' && isset($entry['children'])) {
+                    foreach ($entry['children'] as $child) {
+                        $payloadsIds[] = ['id' => $child['id']];
+                    }
+                } else {
+                    $payloadsIds[] = ['id' => $entry['id']];
+                }
+            }
+
+            $payload = [
+                [
+                    'action' => 'delete',
+                    'entity' => $dataProvider->getEntity(),
+                    'payload' => $payloadsIds,
+                ],
+            ];
+
+            $request = new Request([], [], [], [], [], [], json_encode($payload));
+            // ignore deprecations in prod
+            if ($this->env !== 'prod') {
+                $request->headers->set(PlatformRequest::HEADER_IGNORE_DEPRECATIONS, 'true');
+            }
+            $request->headers->set(PlatformRequest::HEADER_FAIL_ON_ERROR, 'false');
+
+            $this->requestStack->push($request);
+            $response = $this->sync->sync($request, $context);
+            $this->requestStack->pop();
+
+            $result = json_decode($response->getContent(), true);
+
+            if ($response->getStatusCode() >= 400) {
+                throw new \RuntimeException(sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), print_r($result, true)));
+            }
         }
     }
 }
