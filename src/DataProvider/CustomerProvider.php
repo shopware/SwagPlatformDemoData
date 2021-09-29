@@ -3,18 +3,22 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
-use Shopware\Core\Defaults;
+use Shopware\Core\Content\Category\CategoryEntity;
+use Shopware\Core\Framework\Api\Context\SystemSource;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 
 class CustomerProvider extends DemoDataProvider
 {
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
+    private EntityRepositoryInterface $categoryRepository;
 
-    public function __construct(Connection $connection)
+    public function __construct(Connection $connection, EntityRepositoryInterface $categoryRepository)
     {
         $this->connection = $connection;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function getAction(): string
@@ -32,13 +36,14 @@ class CustomerProvider extends DemoDataProvider
         $salutationId = $this->getSalutationId();
         $paymentMethodId = $this->getPaymentMethodId();
         $countryId = $this->getCountryId();
+        $salesChannelId = $this->getStorefrontSalesChannelId();
 
         return [
             [
                 'id' => '6c97534c2c0747f39e8751e43cb2b013',
                 'defaultPaymentMethodId' => $paymentMethodId,
                 'salutationId' => $salutationId,
-                'salesChannelId' => Defaults::SALES_CHANNEL,
+                'salesChannelId' => $salesChannelId,
                 'customerNumber' => 'SWDEMO10000',
                 'firstName' => 'Max',
                 'lastName' => 'Mustermann',
@@ -60,14 +65,14 @@ class CustomerProvider extends DemoDataProvider
                     'city' => 'Musterstadt',
                 ],
                 'defaultBillingAddressId' => 'd8f0dff7ef3947979a83c42f6509f22c',
-                'groupId' => Defaults::FALLBACK_CUSTOMER_GROUP,
+                'groupId' => 'cfbd5018d38d41d8adca10d94fc8bdd6',
             ],
         ];
     }
 
     private function getSalutationId(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(COALESCE(
 	            (SELECT `id` FROM `salutation` WHERE `salutation_key` = "mr" LIMIT 1),
 	            (SELECT `id` FROM `salutation` LIMIT 1)
@@ -83,7 +88,7 @@ class CustomerProvider extends DemoDataProvider
 
     private function getPaymentMethodId(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`id`))
             FROM `payment_method`
             WHERE `active` = 1;
@@ -96,9 +101,9 @@ class CustomerProvider extends DemoDataProvider
         return (string) $result;
     }
 
-    private function getCountryId()
+    private function getCountryId(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`id`))
             FROM `country`
             WHERE `active` = 1;
@@ -109,5 +114,30 @@ class CustomerProvider extends DemoDataProvider
         }
 
         return (string) $result;
+    }
+
+    private function getStorefrontSalesChannelId(): string
+    {
+        $criteria = new Criteria();
+        $criteria->addFilter(new EqualsFilter('parentId', null));
+        $criteria->addAssociation('navigationSalesChannels');
+
+        /** @var CategoryEntity|null $rootCategory */
+        $rootCategory = $this->categoryRepository->search($criteria, new Context(new SystemSource()))->first();
+        if (!$rootCategory) {
+            throw new \RuntimeException('Root category not found');
+        }
+
+        $navigationSalesChannels = $rootCategory->getNavigationSalesChannels();
+        if ($navigationSalesChannels === null) {
+            throw new \RuntimeException('Sales channel not found');
+        }
+
+        $navigationSalesChannel = $navigationSalesChannels->first();
+        if (!$navigationSalesChannel) {
+            throw new \RuntimeException('Sales channel not found');
+        }
+
+        return $navigationSalesChannel->getId();
     }
 }

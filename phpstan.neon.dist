@@ -1,0 +1,23 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: 8
+    tmpDir: var/cache/phpstan
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+
+    bootstrapFiles:
+        - vendor/shopware/core/DevOps/StaticAnalyze/PHPStan/phpstan-bootstrap.php
+    # run `php vendor/shopware/core/DevOps/StaticAnalyze/PHPStan/phpstan-bootstrap.php` to create the container
+    symfony:
+        constant_hassers: false
+        container_xml_path: '../../../var/cache/phpstan_dev/Shopware_Core_DevOps_StaticAnalyze_StaticAnalyzeKernelPhpstan_devDebugContainer.xml'
+        console_application_loader: vendor/shopware/core/DevOps/StaticAnalyze/PHPStan/console-application.php
+    excludes_analyse:
+        - vendor
+        - var
+        - ecs.php
+    paths:
+        - src
+        - tests

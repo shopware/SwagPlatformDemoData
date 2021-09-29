@@ -6,10 +6,7 @@ use Doctrine\DBAL\Connection;
 
 class RuleProvider extends DemoDataProvider
 {
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {
@@ -156,7 +153,7 @@ class RuleProvider extends DemoDataProvider
 
     private function getCountryIdByIsoCode(string $iso): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`id`))
             FROM `country`
             WHERE `iso` = :iso;

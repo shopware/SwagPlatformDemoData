@@ -4,6 +4,7 @@ namespace Swag\PlatformDemoDataTests;
 
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
+use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Api\Controller\SyncController;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
@@ -21,17 +22,20 @@ class DemoDataServiceTest extends TestCase
     {
         $connection = $this->getContainer()->get(Connection::class);
 
-        $connection->executeUpdate('DELETE FROM product');
-        $connection->executeUpdate('DELETE FROM category WHERE parent_id IS NOT NULL');
-        $connection->executeUpdate('DELETE FROM customer');
-        $connection->executeUpdate('DELETE FROM property_group_option');
-        $connection->executeUpdate('DELETE FROM property_group');
+        $connection->executeStatement('DELETE FROM product');
+        $connection->executeStatement('DELETE FROM category WHERE parent_id IS NOT NULL');
+        $connection->executeStatement('DELETE FROM customer');
+        $connection->executeStatement('DELETE FROM property_group_option');
+        $connection->executeStatement('DELETE FROM property_group');
     }
 
     public function testGenerate(): void
     {
+        static::assertTrue($this->getContainer()->has(DemoDataService::class));
         $demoDataService = $this->getContainer()->get(DemoDataService::class);
-        $context = Context::createDefaultContext();
+
+        static::assertInstanceOf(DemoDataService::class, $demoDataService);
+        $context = new Context(new SystemSource());
         $demoDataService->generate($context);
         static::assertTrue(true);
 
@@ -47,34 +51,11 @@ class DemoDataServiceTest extends TestCase
         $this->assertEntityCountGreaterThanOrEqual(16, 'product.repository');
     }
 
-    public function testGenerateFailsOnInvalidData(): void
-    {
-        $provider = $this->createMock(DemoDataProvider::class);
-        $provider->method('getAction')->willReturn('upsert');
-        $provider->method('getEntity')->willReturn('product');
-        $provider->method('getPayload')->willReturn([
-            [
-                'id' => Uuid::randomHex(),
-                'invalid' => true
-            ]
-        ]);
-
-        $demoDataService = new DemoDataService(
-            $this->getContainer()->get(SyncController::class),
-            [$provider],
-            $this->getContainer()->get('request_stack'),
-            'prod'
-        );
-
-        $this->expectException(\Throwable::class);
-        $demoDataService->generate(Context::createDefaultContext());
-    }
-
-    private function assertEntityCountGreaterThanOrEqual(int $expectedCount, string $repositoryName)
+    private function assertEntityCountGreaterThanOrEqual(int $expectedCount, string $repositoryName): void
     {
         /** @var EntityRepositoryInterface $repository */
         $repository = $this->getContainer()->get($repositoryName);
-        $ids = $repository->searchIds(new Criteria(), Context::createDefaultContext())->getIds();
-        static::assertGreaterThanOrEqual($expectedCount, count($ids), 'There should be ' . $expectedCount . ' or more entities in ' . $repositoryName);
+        $ids = $repository->searchIds(new Criteria(), new Context(new SystemSource()))->getIds();
+        static::assertGreaterThanOrEqual($expectedCount, \count($ids), 'There should be ' . $expectedCount . ' or more entities in ' . $repositoryName);
     }
 }

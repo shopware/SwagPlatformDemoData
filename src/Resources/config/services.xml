@@ -36,6 +36,7 @@
 
         <service id="Swag\PlatformDemoData\DataProvider\CustomerProvider">
             <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="category.repository" />
 
             <tag name="swag.demo_data.data_provider" priority="800" />
         </service>

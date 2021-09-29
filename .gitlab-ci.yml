@@ -1,0 +1,4 @@
+include:
+    project: 'shopware/6/product/platform'
+    ref: 'trunk'
+    file: '.gitlab/templates/plugin.yml'

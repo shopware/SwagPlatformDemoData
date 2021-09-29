@@ -11,36 +11,27 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class DemoDataService
 {
-    /**
-     * @var SyncController
-     */
-    private $sync;
+    private SyncController $sync;
 
     /**
      * @var DemoDataProvider[]
      */
-    private $demoDataProvider;
+    private array $demoDataProvider;
 
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-    /**
-     * @var string
-     */
-    private $env;
+    private RequestStack $requestStack;
+
+    private string $env;
 
     public function __construct(SyncController $sync, iterable $demoDataProvider, RequestStack $requestStack, string $env)
     {
         $this->sync = $sync;
-        $this->demoDataProvider = $demoDataProvider;
+        $this->demoDataProvider = \is_array($demoDataProvider) ? $demoDataProvider : \iterator_to_array($demoDataProvider);
         $this->requestStack = $requestStack;
         $this->env = $env;
     }
 
     public function generate(Context $context): void
     {
-        /** @var DemoDataProvider $dataProvider */
         foreach ($this->demoDataProvider as $dataProvider) {
             $payload = [
                 [
@@ -50,7 +41,7 @@ class DemoDataService
                 ],
             ];
 
-            $request = new Request([], [], [], [], [], [], json_encode($payload));
+            $request = new Request([], [], [], [], [], [], \json_encode($payload, JSON_THROW_ON_ERROR));
             // ignore deprecations in prod
             if ($this->env !== 'prod') {
                 $request->headers->set(PlatformRequest::HEADER_IGNORE_DEPRECATIONS, 'true');
@@ -61,10 +52,10 @@ class DemoDataService
             $response = $this->sync->sync($request, $context);
             $this->requestStack->pop();
 
-            $result = json_decode($response->getContent(), true);
+            $result = \json_decode((string) $response->getContent(), true);
 
             if ($response->getStatusCode() >= 400) {
-                throw new \RuntimeException(sprintf('Error importing "%s": %s', $dataProvider->getEntity(), print_r($result, true)));
+                throw new \RuntimeException(\sprintf('Error importing "%s": %s', $dataProvider->getEntity(), \print_r($result, true)));
             }
 
             $dataProvider->finalize($context);
@@ -73,7 +64,6 @@ class DemoDataService
 
     public function delete(Context $context): void
     {
-        /** @var DemoDataProvider $dataProvider */
         foreach ($this->demoDataProvider as $dataProvider) {
             $payloadsIds = [];
             foreach ($dataProvider->getPayload() as $entry) {
@@ -94,7 +84,7 @@ class DemoDataService
                 ],
             ];
 
-            $request = new Request([], [], [], [], [], [], json_encode($payload));
+            $request = new Request([], [], [], [], [], [], \json_encode($payload, JSON_THROW_ON_ERROR));
             // ignore deprecations in prod
             if ($this->env !== 'prod') {
                 $request->headers->set(PlatformRequest::HEADER_IGNORE_DEPRECATIONS, 'true');
@@ -105,10 +95,10 @@ class DemoDataService
             $response = $this->sync->sync($request, $context);
             $this->requestStack->pop();
 
-            $result = json_decode($response->getContent(), true);
+            $result = \json_decode((string)$response->getContent(), true);
 
             if ($response->getStatusCode() >= 400) {
-                throw new \RuntimeException(sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), print_r($result, true)));
+                throw new \RuntimeException(\sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), \print_r($result, true)));
             }
         }
     }

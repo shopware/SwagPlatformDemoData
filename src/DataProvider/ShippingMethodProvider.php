@@ -3,14 +3,10 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\FetchMode;
 
 class ShippingMethodProvider extends DemoDataProvider
 {
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {
@@ -43,15 +39,15 @@ class ShippingMethodProvider extends DemoDataProvider
 
     private function getShippingMethodIds(): array
     {
-        return $this->connection->executeQuery('
+        return $this->connection->fetchFirstColumn('
             SELECT LOWER(HEX(`id`))
             FROM `shipping_method`;
-        ')->fetchAll(FetchMode::COLUMN);
+        ');
     }
 
     private function getRuleId(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`id`))
             FROM `rule`
         ');
