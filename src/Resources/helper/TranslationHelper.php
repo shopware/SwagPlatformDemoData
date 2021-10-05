@@ -2,14 +2,16 @@
 
 namespace Swag\PlatformDemoData\Resources\helper;
 
+use Doctrine\DBAL\Connection;
+
 class TranslationHelper
 {
     //Which language to use if no translation for the wanted language is available
     private const DEFAULT_TRANSLATION_LANGUAGE = 'en-GB';
 
-    private $dbHelper;
+    private DbHelper $dbHelper;
 
-    public function __construct(\Doctrine\DBAL\Connection $connection)
+    public function __construct(Connection $connection)
     {
         $this->dbHelper = new DbHelper($connection);
     }
@@ -22,9 +24,7 @@ class TranslationHelper
             $translations[$systemLanguageCode] = $translations[self::DEFAULT_TRANSLATION_LANGUAGE];
         }
 
-        $translations = $this->clearUnavailableTranslations($translations);
-
-        return $translations;
+        return $this->clearUnavailableTranslations($translations);
     }
 
     private function clearUnavailableTranslations(array $translations): array

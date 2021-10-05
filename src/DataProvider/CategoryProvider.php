@@ -4,30 +4,21 @@ namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Category\CategoryEntity;
+use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\PlatformDemoData\Resources\helper\DbHelper;
 use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
 class CategoryProvider extends DemoDataProvider
 {
-    /**
-     * @var EntityRepositoryInterface
-     */
-    private $categoryRepository;
+    private EntityRepositoryInterface $categoryRepository;
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
-    /**
-     * @var DbHelper
-     */
-    private $translationHelper;
+    private TranslationHelper $translationHelper;
 
     public function __construct(EntityRepositoryInterface $categoryRepository, Connection $connection)
     {
@@ -179,7 +170,7 @@ class CategoryProvider extends DemoDataProvider
         $criteria->addFilter(new EqualsFilter('parentId', null));
 
         /** @var CategoryEntity|null $rootCategory */
-        $rootCategory = $this->categoryRepository->search($criteria, Context::createDefaultContext())->first();
+        $rootCategory = $this->categoryRepository->search($criteria, new Context(new SystemSource()))->first();
         if (!$rootCategory) {
             throw new \RuntimeException('Root category not found');
         }
@@ -189,7 +180,7 @@ class CategoryProvider extends DemoDataProvider
 
     private function getDefaultCmsListingPageId(): string
     {
-        $result = $this->connection->fetchColumn(
+        $result = $this->connection->fetchOne(
             '
                 SELECT cms_page_id
                 FROM cms_page_translation

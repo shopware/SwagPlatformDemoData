@@ -7,10 +7,7 @@ use Shopware\Core\Defaults;
 
 class DbHelper
 {
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection)
     {
@@ -25,7 +22,7 @@ class DbHelper
             return null;
         }
 
-        $result = $this->connection->fetchColumn(
+        $result = $this->connection->fetchOne(
             '
                 SELECT LOWER(HEX(id))
                 FROM language
@@ -43,7 +40,7 @@ class DbHelper
 
     public function getSystemLanguageCode(): string
     {
-        $systemLanguageLocaleId = $this->connection->fetchColumn(
+        $systemLanguageLocaleId = $this->connection->fetchOne(
             '
                 SELECT LOWER(HEX(locale_id))
                 FROM language
@@ -56,7 +53,7 @@ class DbHelper
             throw new \RuntimeException('Could not find the localeID of the SystemLanguage!');
         }
 
-        $systemLanguageCode = $this->connection->fetchColumn(
+        $systemLanguageCode = $this->connection->fetchOne(
             '
                 SELECT code
                 FROM locale
@@ -74,7 +71,7 @@ class DbHelper
 
     private function getLocaleId(string $languageCode): ?string
     {
-        $result = $this->connection->fetchColumn(
+        $result = $this->connection->fetchOne(
             '
                 SELECT LOWER(HEX(id))
                 FROM locale

@@ -8,23 +8,20 @@ use Shopware\Core\Framework\Plugin\Context\UninstallContext;
 
 class SwagPlatformDemoData extends Plugin
 {
-    /**
-     * @var DemoDataService
-     */
-    private $demoDataService;
+    private DemoDataService $demoDataService;
 
-    public function activate(ActivateContext $context): void
+    public function activate(ActivateContext $activateContext): void
     {
-        $this->demoDataService->generate($context->getContext());
+        $this->demoDataService->generate($activateContext->getContext());
     }
 
-    public function uninstall(UninstallContext $context): void
+    public function uninstall(UninstallContext $uninstallContext): void
     {
-        if ($context->keepUserData()) {
+        if ($uninstallContext->keepUserData()) {
             return;
         }
 
-        $this->demoDataService->delete($context->getContext());
+        $this->demoDataService->delete($uninstallContext->getContext());
     }
 
     /**

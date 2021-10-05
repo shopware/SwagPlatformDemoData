@@ -12,17 +12,11 @@ class ProductProvider extends DemoDataProvider
 {
     private const LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
-    /**
-     * @var TranslationHelper
-     */
-    private $translationHelper;
+    private TranslationHelper $translationHelper;
 
-    public function __construct(\Doctrine\DBAL\Connection $connection)
+    public function __construct(Connection $connection)
     {
         $this->connection = $connection;
         $this->translationHelper = new TranslationHelper($connection);
@@ -602,7 +596,7 @@ class ProductProvider extends DemoDataProvider
 
     private function getTaxId(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(COALESCE(
                 (SELECT `id` FROM `tax` WHERE tax_rate = "19.00" LIMIT 1),
 	            (SELECT `id` FROM `tax`  LIMIT 1)
@@ -618,7 +612,7 @@ class ProductProvider extends DemoDataProvider
 
     private function getStorefrontSalesChannel(): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`id`))
             FROM `sales_channel`
             WHERE `type_id` = :storefront_type

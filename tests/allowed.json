@@ -1,0 +1,7 @@
+[
+    {
+        "location": "Shopware\\Core\\TestBootstrapper::bootstrap",
+        "message": "Since symfony/framework-bundle 5.3: The \"session\" service and \"SessionInterface\" alias are deprecated, use \"$requestStack->getSession()\" instead. It is being referenced by the \"Shopware\\Storefront\\Framework\\Csrf\\SessionProvider\" service.",
+        "count": 2
+    }
+]

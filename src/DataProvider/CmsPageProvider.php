@@ -2,17 +2,15 @@
 
 namespace Swag\PlatformDemoData\DataProvider;
 
+use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Cms\DataResolver\FieldConfig;
 use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
 class CmsPageProvider extends DemoDataProvider
 {
-    /**
-     * @var TranslationHelper
-     */
-    private $translationHelper;
+    private TranslationHelper $translationHelper;
 
-    public function __construct(\Doctrine\DBAL\Connection $connection)
+    public function __construct(Connection $connection)
     {
         $this->translationHelper = new TranslationHelper($connection);
     }

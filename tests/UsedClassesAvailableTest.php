@@ -12,12 +12,15 @@ class UsedClassesAvailableTest extends TestCase
 
     public function testClassesAreInstantiable(): void
     {
-        $namespace = str_replace('Tests', '', __NAMESPACE__);
+        $namespace = \str_replace('Tests', '', __NAMESPACE__);
 
         foreach ($this->getPluginClasses() as $class) {
-            $classRelativePath = str_replace(['.php', '/'], ['', '\\'], $class->getRelativePathname());
+            $classRelativePath = \str_replace(['.php', '/'], ['', '\\'], $class->getRelativePathname());
 
-            $this->getMockBuilder($namespace . '\\' . $classRelativePath)
+            /** @var class-string $className */
+            $className = $namespace . '\\' . $classRelativePath;
+
+            $this->getMockBuilder($className)
                 ->disableOriginalConstructor()
                 ->getMock();
         }
@@ -29,8 +32,8 @@ class UsedClassesAvailableTest extends TestCase
     private function getPluginClasses(): Finder
     {
         $finder = new Finder();
-        $finder->in(realpath(__DIR__ . '/../'));
-        $finder->exclude('Test');
+        $finder->in((string) \realpath(__DIR__ . '/../'));
+        $finder->exclude(['vendor', 'Test', 'tests', 'var']);
 
         return $finder->files()->name('*.php');
     }

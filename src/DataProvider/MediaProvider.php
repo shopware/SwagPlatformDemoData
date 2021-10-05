@@ -9,15 +9,9 @@ use Shopware\Core\Framework\Context;
 
 class MediaProvider extends DemoDataProvider
 {
-    /**
-     * @var FileSaver
-     */
-    private $fileSaver;
+    private FileSaver $fileSaver;
 
-    /**
-     * @var Connection
-     */
-    private $connection;
+    private Connection $connection;
 
     public function __construct(Connection $connection, FileSaver $fileSaver)
     {
@@ -82,16 +76,21 @@ class MediaProvider extends DemoDataProvider
 
     public function finalize(Context $context): void
     {
-        foreach (glob(__DIR__ . '/../Resources/media/*/*.jpg') as $file) {
+        $files = \glob(__DIR__ . '/../Resources/media/*/*.jpg');
+        if ($files === false) {
+            return;
+        }
+
+        foreach ($files as $file) {
             $this->fileSaver->persistFileToMedia(
                 new MediaFile(
                     $file,
-                    mime_content_type($file),
-                    pathinfo($file, PATHINFO_EXTENSION),
-                    filesize($file)
+                    \mime_content_type($file) ?: 'application/octet-stream',
+                    \pathinfo($file, PATHINFO_EXTENSION),
+                    \filesize($file) ?: 0
                 ),
-                pathinfo($file, PATHINFO_FILENAME),
-                basename(dirname($file)),
+                \pathinfo($file, PATHINFO_FILENAME),
+                \basename(\dirname($file)),
                 $context
             );
         }
@@ -99,9 +98,9 @@ class MediaProvider extends DemoDataProvider
         parent::finalize($context);
     }
 
-    private function getDefaultFolderIdForEntity(string $entity)
+    private function getDefaultFolderIdForEntity(string $entity): string
     {
-        $result = $this->connection->fetchColumn('
+        $result = $this->connection->fetchOne('
             SELECT LOWER(HEX(`media_folder`.`id`))
             FROM `media_default_folder`
             JOIN `media_folder` ON `media_default_folder`.`id` = `media_folder`.`default_folder_id`
