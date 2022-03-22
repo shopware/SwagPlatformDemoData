@@ -2,3 +2,4 @@
 - Pipeline hinzugefügt
 - Dev tooling hinzugefügt
 - Plugin Validierungsfehler gefixt
+- Plugin Aktivierung gefixt durch CMS Page Umbenennung
