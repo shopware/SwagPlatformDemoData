@@ -188,7 +188,7 @@ class CategoryProvider extends DemoDataProvider
                 WHERE cms_page.locked
                 AND name = :name
             ',
-            ['name' => 'Default category layout']
+            ['name' => 'Default listing layout']
         );
 
         if ($result === false) {
