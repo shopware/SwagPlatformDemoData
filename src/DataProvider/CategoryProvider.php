@@ -180,21 +180,35 @@ class CategoryProvider extends DemoDataProvider
 
     private function getDefaultCmsListingPageId(): string
     {
-        $result = $this->connection->fetchOne(
+        $id = $this->getCmsPageIdByName('Default listing layout');
+
+        if ($id !== null) {
+            return $id;
+        }
+
+        // BC support for older shopware versions - \Shopware\Core\Migration\V6_4\Migration1645019769UpdateCmsPageTranslation changed the translations
+        $id = $this->getCmsPageIdByName('Default category layout');
+
+        if ($id !== null) {
+            return $id;
+        }
+
+        throw new \RuntimeException('Default Cms Listing page not found');
+    }
+
+    private function getCmsPageIdByName(string $name): ?string
+    {
+        $id = $this->connection->fetchOne(
             '
-                SELECT cms_page_id
+                SELECT LOWER(HEX(cms_page_id)) as cms_page_id
                 FROM cms_page_translation
                 INNER JOIN cms_page ON cms_page.id = cms_page_translation.cms_page_id
                 WHERE cms_page.locked
                 AND name = :name
             ',
-            ['name' => 'Default listing layout']
+            ['name' => $name]
         );
 
-        if ($result === false) {
-            throw new \RuntimeException('Default Cms Listing page not found');
-        }
-
-        return Uuid::fromBytesToHex((string) $result);
+        return $id !== false ? $id : null;
     }
 }
