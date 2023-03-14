@@ -1,34 +1,27 @@
 <?php declare(strict_types=1);
+/*
+ * (c) shopware AG <info@shopware.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Swag\PlatformDemoData;
 
 use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\ActivateContext;
-use Shopware\Core\Framework\Plugin\Context\UninstallContext;
+use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
 
 class SwagPlatformDemoData extends Plugin
 {
-    private DemoDataService $demoDataService;
-
     public function activate(ActivateContext $activateContext): void
     {
-        $this->demoDataService->generate($activateContext->getContext());
+        // @phpstan-ignore-next-line
+        $this->container->get(DemoDataService::class)->generate($activateContext->getContext());
     }
 
-    public function uninstall(UninstallContext $uninstallContext): void
+    public function deactivate(DeactivateContext $deactivateContext): void
     {
-        if ($uninstallContext->keepUserData()) {
-            return;
-        }
-
-        $this->demoDataService->delete($uninstallContext->getContext());
-    }
-
-    /**
-     * @required
-     */
-    public function setDemoDataService(DemoDataService $demoDataService): void
-    {
-        $this->demoDataService = $demoDataService;
+        // @phpstan-ignore-next-line
+        $this->container->get(DemoDataService::class)->delete($deactivateContext->getContext());
     }
 }

@@ -7,11 +7,10 @@
     <services>
         <defaults public="false"/>
 
-        <service id="Swag\PlatformDemoData\DemoDataService">
+        <service id="Swag\PlatformDemoData\DemoDataService" public="true">
             <argument type="service" id="Shopware\Core\Framework\Api\Controller\SyncController"/>
             <argument type="tagged" tag="swag.demo_data.data_provider" />
             <argument type="service" id="request_stack" />
-            <argument>%kernel.environment%</argument>
         </service>
 
         <service id="Swag\PlatformDemoData\DataProvider\MediaProvider">

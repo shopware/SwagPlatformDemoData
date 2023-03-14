@@ -1,17 +1,19 @@
 <?php declare(strict_types=1);
+/*
+ * (c) shopware AG <info@shopware.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Swag\PlatformDemoDataTests;
 
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Api\Context\SystemSource;
-use Shopware\Core\Framework\Api\Controller\SyncController;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
-use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\PlatformDemoData\DataProvider\DemoDataProvider;
 use Swag\PlatformDemoData\DemoDataService;
 
 class DemoDataServiceTest extends TestCase
@@ -31,13 +33,12 @@ class DemoDataServiceTest extends TestCase
 
     public function testGenerate(): void
     {
-        static::assertTrue($this->getContainer()->has(DemoDataService::class));
+        // @phpstan-ignore-next-line
         $demoDataService = $this->getContainer()->get(DemoDataService::class);
-
         static::assertInstanceOf(DemoDataService::class, $demoDataService);
+
         $context = new Context(new SystemSource());
         $demoDataService->generate($context);
-        static::assertTrue(true);
 
         $this->assertEntityCountGreaterThanOrEqual(9, 'category.repository');
         $this->assertEntityCountGreaterThanOrEqual(1, 'customer.repository');
@@ -53,7 +54,7 @@ class DemoDataServiceTest extends TestCase
 
     private function assertEntityCountGreaterThanOrEqual(int $expectedCount, string $repositoryName): void
     {
-        /** @var EntityRepositoryInterface $repository */
+        /** @var EntityRepository $repository */
         $repository = $this->getContainer()->get($repositoryName);
         $ids = $repository->searchIds(new Criteria(), new Context(new SystemSource()))->getIds();
         static::assertGreaterThanOrEqual($expectedCount, \count($ids), 'There should be ' . $expectedCount . ' or more entities in ' . $repositoryName);
