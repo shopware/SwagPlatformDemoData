@@ -1,4 +1,9 @@
 <?php declare(strict_types=1);
+/*
+ * (c) shopware AG <info@shopware.com>
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Shopware\Core;
 
@@ -168,7 +173,11 @@ class TestBootstrapper
     {
         if (!$pathToComposerJson) {
             $trace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS);
-            $callerFile = $trace[0]['file'];
+            $callerFile = $trace[0]['file'] ?? null;
+
+            if ($callerFile === null) {
+                throw new \LogicException('Current stacktrace does not contain file information');
+            }
 
             $dir = \dirname($callerFile);
             $max = 10;
@@ -268,7 +277,7 @@ class TestBootstrapper
     {
         try {
             $connection = $this->getContainer()->get(Connection::class);
-            $connection->executeQuery('SELECT 1 FROM `plugin`')->fetchAll();
+            $connection->executeQuery('SELECT 1 FROM `plugin`')->fetchAllAssociative();
 
             return true;
         } catch (\Throwable $exists) {

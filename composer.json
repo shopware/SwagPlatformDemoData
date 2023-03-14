@@ -1,7 +1,7 @@
 {
     "name": "swag/demo-data",
     "description": "Plugin including demo data",
-    "version": "1.0.9",
+    "version": "2.0.0",
     "type": "shopware-platform-plugin",
     "license": "MIT",
     "authors": [
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "shopware/core": "^6.4.1@dev"
+        "shopware/core": "~6.5@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "9.5.*",
