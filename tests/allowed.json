@@ -3,5 +3,15 @@
         "location": "Shopware\\Core\\TestBootstrapper::bootstrap",
         "message": "Since symfony/framework-bundle 5.3: The \"session\" service and \"SessionInterface\" alias are deprecated, use \"$requestStack->getSession()\" instead. It is being referenced by the \"Shopware\\Storefront\\Framework\\Csrf\\SessionProvider\" service.",
         "count": 2
+    },
+    {
+        "location": "Shopware\\Core\\TestBootstrapper::bootstrap",
+        "message":  "Since shopware/core : Method \"Shopware\\Core\\Content\\Media\\Message\\GenerateThumbnailsMessage::Shopware\\Core\\Content\\Media\\Message\\GenerateThumbnailsMessage::withContext()\" is deprecated and will be removed in v6.6.0.0.",
+        "count": 12
+    },
+    {
+      "location": "Swag\\PlatformDemoDataTests\\DemoDataServiceTest::testGenerate",
+      "message":  "Since shopware/core : Method \"Shopware\\Core\\Content\\Media\\Message\\GenerateThumbnailsMessage::Shopware\\Core\\Content\\Media\\Message\\GenerateThumbnailsMessage::withContext()\" is deprecated and will be removed in v6.6.0.0.",
+      "count": 9
     }
 ]
