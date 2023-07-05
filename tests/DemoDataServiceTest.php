@@ -9,6 +9,7 @@ namespace Swag\PlatformDemoDataTests;
 
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
+use Shopware\Core\Content\Category\CategoryCollection;
 use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -54,7 +55,7 @@ class DemoDataServiceTest extends TestCase
 
     private function assertEntityCountGreaterThanOrEqual(int $expectedCount, string $repositoryName): void
     {
-        /** @var EntityRepository $repository */
+        /** @var EntityRepository<CategoryCollection> $repository */
         $repository = $this->getContainer()->get($repositoryName);
         $ids = $repository->searchIds(new Criteria(), new Context(new SystemSource()))->getIds();
         static::assertGreaterThanOrEqual($expectedCount, \count($ids), 'There should be ' . $expectedCount . ' or more entities in ' . $repositoryName);

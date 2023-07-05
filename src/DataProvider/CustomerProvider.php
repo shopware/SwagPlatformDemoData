@@ -8,6 +8,7 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Content\Category\CategoryCollection;
 use Shopware\Core\Content\Category\CategoryEntity;
 use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
@@ -18,8 +19,15 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 class CustomerProvider extends DemoDataProvider
 {
     private Connection $connection;
+
+    /**
+     * @var EntityRepository<CategoryCollection> $categoryRepository
+     */
     private EntityRepository $categoryRepository;
 
+    /**
+     * @param EntityRepository<CategoryCollection> $categoryRepository
+     */
     public function __construct(Connection $connection, EntityRepository $categoryRepository)
     {
         $this->connection = $connection;
