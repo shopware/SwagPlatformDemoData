@@ -8,6 +8,7 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Content\Category\CategoryCollection;
 use Shopware\Core\Content\Category\CategoryEntity;
 use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
@@ -18,12 +19,18 @@ use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
 class CategoryProvider extends DemoDataProvider
 {
+    /**
+     * @var EntityRepository<CategoryCollection> $categoryRepository
+     */
     private EntityRepository $categoryRepository;
 
     private Connection $connection;
 
     private TranslationHelper $translationHelper;
 
+    /**
+     * @param EntityRepository<CategoryCollection> $categoryRepository
+     */
     public function __construct(EntityRepository $categoryRepository, Connection $connection)
     {
         $this->categoryRepository = $categoryRepository;
