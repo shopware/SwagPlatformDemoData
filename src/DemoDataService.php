@@ -49,7 +49,6 @@ class DemoDataService
             ];
 
             $request = new Request([], [], [], [], [], [], \json_encode($payload, JSON_THROW_ON_ERROR));
-            $request->headers->set(PlatformRequest::HEADER_FAIL_ON_ERROR, 'false');
 
             $this->requestStack->push($request);
             $response = $this->sync->sync($request, $context);
@@ -88,7 +87,6 @@ class DemoDataService
             ];
 
             $request = new Request([], [], [], [], [], [], \json_encode($payload, JSON_THROW_ON_ERROR));
-            $request->headers->set(PlatformRequest::HEADER_FAIL_ON_ERROR, 'false');
 
             try {
                 $this->requestStack->push($request);
