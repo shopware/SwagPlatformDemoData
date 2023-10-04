@@ -1,4 +1,5 @@
 <?php declare(strict_types=1);
+
 /*
  * (c) shopware AG <info@shopware.com>
  * For the full copyright and license information, please view the LICENSE
@@ -7,18 +8,14 @@
 
 use Shopware\Core\TestBootstrapper;
 
-if (is_readable(__DIR__ . '/../vendor/shopware/platform/src/Core/TestBootstrapper.php')) {
-    require __DIR__ . '/../vendor/shopware/platform/src/Core/TestBootstrapper.php';
-} else if (is_readable(__DIR__ . '/../vendor/shopware/core/TestBootstrapper.php')) {
-    require __DIR__ . '/../vendor/shopware/core/TestBootstrapper.php';
-} else {
-    // vendored from platform, only use local TestBootstrapper if not already defined in platform
-    require __DIR__ . '/TestBootstrapper.php';
+if (!class_exists(TestBootstrapper::class)) {
+    require_once __DIR__ . '/../../../../src/Core/TestBootstrapper.php';
 }
+$bootstrapper = new TestBootstrapper();
 
-return (new TestBootstrapper())
-    ->setLoadEnvFile(true)
-    ->setForceInstallPlugins(true)
+$bootstrapper->getClassLoader()->addPsr4('Swag\\PlatformDemoDataTests\\', __DIR__);
+
+$bootstrapper
+    ->setPlatformEmbedded(false)
     ->addCallingPlugin()
-    ->bootstrap()
-    ->getClassLoader();
+    ->bootstrap();
