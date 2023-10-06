@@ -9,7 +9,9 @@ namespace Swag\PlatformDemoData\Resources\helper;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Defaults;
+use Shopware\Core\Framework\Log\Package;
 
+#[Package('services-settings')]
 class DbHelper
 {
     private Connection $connection;

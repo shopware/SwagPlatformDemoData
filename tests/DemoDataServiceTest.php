@@ -14,9 +14,11 @@ use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
 use Swag\PlatformDemoData\DemoDataService;
 
+#[Package('services-settings')]
 class DemoDataServiceTest extends TestCase
 {
     use IntegrationTestBehaviour;
