@@ -8,7 +8,9 @@
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
 
+#[Package('services-settings')]
 abstract class DemoDataProvider
 {
     abstract public function getAction(): string;
