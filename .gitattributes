@@ -4,7 +4,6 @@
 /.gitlab-ci.yml export-ignore
 /ecs.php export-ignore
 /phpunit.xml.dist export-ignore
-/psalm.xml export-ignore
 /phpstan.neon.dist export-ignore
 /README.md export-ignore
 /tests export-ignore
