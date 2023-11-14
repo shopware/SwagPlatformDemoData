@@ -1,4 +1,7 @@
 # Shopware Demo Data Plugin
+Do not use in production environments!
+
+Demo data plugin for Shopware 6. The data is imported on plugin activation and it will overwritten existing data.
 
 ## License
 
