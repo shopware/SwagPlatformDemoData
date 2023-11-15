@@ -64,16 +64,19 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit erweiterten Preisen',
                     'en-GB' => 'Main product with advanced prices',
+                    'pl-PL' => 'Produkt główny z zaawansowanymi cenami',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturer' => [
                     'id' => 'cc1c20c365d34cfb88bfab3c3e81d350',
                     'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Freizeit',
                         'en-GB' => 'Shopware Freetime',
+                        'pl-PL' => 'Shopware Wypoczynek',
                     ]),
                 ],
                 'media' => [
@@ -142,16 +145,19 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Bewertungen',
                     'en-GB' => 'Main product with reviews',
+                    'pl-PL' => 'Produkt główny z opiniami',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturer' => [
                     'id' => '2326d67406134c88bcf80e52d9d2ecb7',
                     'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Lebensmittel',
                         'en-GB' => 'Shopware Food',
+                        'pl-PL' => 'Shopware Jedzenie',
                     ]),
                 ],
                 'media' => [
@@ -205,16 +211,19 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptartikel',
                     'en-GB' => 'Main product',
+                    'pl-PL' => 'Produkt główny',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturer' => [
                     'id' => '7f24e96676e944b0a0addc20d56728cb',
                     'name' => $this->translationHelper->adjustTranslations([
                         'de-DE' => 'Shopware Kleidung',
                         'en-GB' => 'Shopware Fashion',
+                        'pl-PL' => 'Shopware Moda',
                     ]),
                 ],
                 'media' => [
@@ -274,10 +283,12 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt, versandkostenfrei mit Hervorhebung',
                     'en-GB' => 'Main product, free shipping with highlighting',
+                    'pl-PL' => 'Produkt główny, darmowa wysyłka z wyróżnieniem',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturerId' => 'cc1c20c365d34cfb88bfab3c3e81d350',
                 'media' => [
@@ -334,10 +345,12 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Variantenprodukt',
                     'en-GB' => 'Variant product',
+                    'pl-PL' => 'Warianty produktu',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
@@ -490,10 +503,12 @@ class ProductProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Eigenschaften',
                     'en-GB' => 'Main product with properties',
+                    'pl-PL' => 'Produkt główny z właściwościami',
                 ]),
                 'description' => $this->translationHelper->adjustTranslations([
                     'de-DE' => self::LOREM_IPSUM,
                     'en-GB' => self::LOREM_IPSUM,
+                    'pl-PL' => self::LOREM_IPSUM,
                 ]),
                 'manufacturerId' => '7f24e96676e944b0a0addc20d56728cb',
                 'media' => [
