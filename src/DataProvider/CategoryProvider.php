@@ -65,6 +65,7 @@ class CategoryProvider extends DemoDataProvider
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Katalog #1',
                     'en-GB' => 'Catalogue #1',
+                    'pl-PL' => 'Katalog #1',
                 ]),
                 'children' => [
                     [
@@ -77,6 +78,7 @@ class CategoryProvider extends DemoDataProvider
                         'name' => $this->translationHelper->adjustTranslations([
                             'de-DE' => 'Lebensmittel',
                             'en-GB' => 'Food',
+                            'pl-PL' => 'Jedzenie',
                         ]),
                         'children' => [
                             [
@@ -89,6 +91,7 @@ class CategoryProvider extends DemoDataProvider
                                 'name' => $this->translationHelper->adjustTranslations([
                                     'de-DE' => 'Backwaren',
                                     'en-GB' => 'Bakery products',
+                                    'pl-PL' => 'Pieczywo',
                                 ]),
                             ],
                             [
@@ -102,6 +105,7 @@ class CategoryProvider extends DemoDataProvider
                                 'name' => $this->translationHelper->adjustTranslations([
                                     'de-DE' => 'Fisch',
                                     'en-GB' => 'Fish',
+                                    'pl-PL' => 'Ryby',
                                 ]),
                             ],
                             [
@@ -115,6 +119,7 @@ class CategoryProvider extends DemoDataProvider
                                 'name' => $this->translationHelper->adjustTranslations([
                                     'de-DE' => 'Süßes',
                                     'en-GB' => 'Sweets',
+                                    'pl-PL' => 'Słodycze',
                                 ]),
                             ],
                         ],
@@ -130,6 +135,7 @@ class CategoryProvider extends DemoDataProvider
                         'name' => $this->translationHelper->adjustTranslations([
                             'de-DE' => 'Bekleidung',
                             'en-GB' => 'Clothing',
+                            'pl-PL' => 'Odzież',
                         ]),
                         'children' => [
                             [
@@ -142,6 +148,7 @@ class CategoryProvider extends DemoDataProvider
                                 'name' => $this->translationHelper->adjustTranslations([
                                     'de-DE' => 'Damen',
                                     'en-GB' => 'Women',
+                                    'pl-PL' => 'Kobiety',
                                 ]),
                             ],
                             [
@@ -155,6 +162,7 @@ class CategoryProvider extends DemoDataProvider
                                 'name' => $this->translationHelper->adjustTranslations([
                                     'de-DE' => 'Herren',
                                     'en-GB' => 'Men',
+                                    'pl-PL' => 'Mężczyźni',
                                 ]),
                             ],
                         ],
@@ -170,6 +178,7 @@ class CategoryProvider extends DemoDataProvider
                         'name' => $this->translationHelper->adjustTranslations([
                             'de-DE' => 'Freizeit & Elektro',
                             'en-GB' => 'Free time & electronics',
+                            'pl-PL' => 'Wypoczynek & Elektronika',
                         ]),
                     ],
                 ],
