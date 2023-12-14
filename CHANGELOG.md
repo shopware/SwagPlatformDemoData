@@ -1,3 +1,6 @@
+# 2.0.1
+- NEXT-32194 - Compatibility with Shopware 6.6
+
 # 2.0.0
 - NEXT-25677 - Compatibility with Shopware 6.5
 - NEXT-25677 - Demodata is now deleted on deactivation
