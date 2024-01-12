@@ -9,8 +9,12 @@ on:
       - '**/*.php'
     branches:
       - trunk
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
 jobs:
   ecs:
+    if: github.event_name != 'schedule'
     uses: shopwareLabs/actions/.github/workflows/ecs.yml@main
     with:
       extensionName: SwagPlatformDemoData
