@@ -1,4 +1,7 @@
 # Shopware Demo Data Plugin
+
+[![codecov](https://codecov.io/github/shopware/SwagPlatformDemoData/graph/badge.svg?token=X9E821G7N8)](https://codecov.io/github/shopware/SwagPlatformDemoData)
+
 Do not use in production environments!
 
 Demo data plugin for Shopware 6. The data is imported on plugin activation and it will overwritten existing data.
