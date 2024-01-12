@@ -1,0 +1,26 @@
+name: PHP
+on:
+  pull_request:
+    paths:
+      - '**/*.php'
+  push:
+    paths:
+      - '**/*.php'
+    branches:
+      - trunk
+jobs:
+  ecs:
+    uses: shopwareLabs/actions/.github/workflows/ecs.yml@main
+    with:
+      extensionName: SwagPlatformDemoData
+      shopwareVersion: trunk
+  phpstan:
+    uses: shopwareLabs/actions/.github/workflows/phpstan.yml@main
+    with:
+      extensionName: SwagPlatformDemoData
+      shopwareVersion: trunk
+  phpunit:
+    uses: shopwareLabs/actions/.github/workflows/phpunit.yml@main
+    with:
+      extensionName: SwagPlatformDemoData
+      shopwareVersion: trunk

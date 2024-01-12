@@ -1,0 +1,8 @@
+changelog:
+  enabled: true
+  pattern: '^NEXT-\d+'
+  variables:
+    ticket: '^(NEXT-\d+)\s'
+  template: |
+    {{range .Commits}}- [{{ .Message }}](https://issues.shopware.com/issues/{{ .Variables.ticket }})
+    {{end}}

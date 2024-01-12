@@ -1,8 +1,0 @@
-variables:
-  PLUGIN_NAME: 'SwagPlatformDemoData'
-  PLATFORM_BRANCH: 'trunk'
-
-include:
-    project: 'shopware/6/product/platform'
-    ref: 'trunk'
-    file: '.gitlab/templates/plugin.yml'
