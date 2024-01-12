@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - '**/*.php'
+      - .github/workflows/php.yml
   push:
     paths:
       - '**/*.php'
@@ -20,7 +21,16 @@ jobs:
       extensionName: SwagPlatformDemoData
       shopwareVersion: trunk
   phpunit:
+    strategy:
+      fail-fast: false
+      matrix:
+        shopware-version:
+          - trunk
+          - 6.5.x
     uses: shopwareLabs/actions/.github/workflows/phpunit.yml@main
     with:
       extensionName: SwagPlatformDemoData
-      shopwareVersion: trunk
+      shopwareVersion: ${{ matrix.shopware-version }}
+      uploadCoverage: true
+    secrets:
+      codecovToken: ${{ secrets.CODECOV_TOKEN }}
