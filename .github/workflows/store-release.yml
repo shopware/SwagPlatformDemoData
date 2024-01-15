@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    uses: shopwareLabs/actions/.github/workflows/store-release.yml@main
+    uses: shopware/github-actions/.github/workflows/store-release.yml@main
     with:
       extensionName: ${{ github.event.repository.name }}
     secrets:

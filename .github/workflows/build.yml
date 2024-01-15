@@ -6,6 +6,6 @@ on:
       - trunk
 jobs:
   build:
-    uses: shopwareLabs/actions/.github/workflows/build-zip.yml@main
+    uses: shopware/github-actions/.github/workflows/build-zip.yml@main
     with:
       extensionName: SwagPlatformDemoData
