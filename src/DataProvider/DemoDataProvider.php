@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /*
  * (c) shopware AG <info@shopware.com>
  * For the full copyright and license information, please view the LICENSE
@@ -22,7 +24,5 @@ abstract class DemoDataProvider
      */
     abstract public function getPayload(): array;
 
-    public function finalize(Context $context): void
-    {
-    }
+    public function finalize(Context $context): void {}
 }

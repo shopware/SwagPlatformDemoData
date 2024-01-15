@@ -13,14 +13,11 @@ on:
   schedule:
     - cron: '0 3 * * *'
 jobs:
-  ecs:
+  cs:
     if: github.event_name != 'schedule'
-    uses: shopwareLabs/actions/.github/workflows/ecs.yml@main
-    with:
-      extensionName: SwagPlatformDemoData
-      shopwareVersion: trunk
+    uses: shopware/github-actions/.github/workflows/cs-fixer.yml@main
   phpstan:
-    uses: shopwareLabs/actions/.github/workflows/phpstan.yml@main
+    uses: shopware/github-actions/.github/workflows/phpstan.yml@main
     with:
       extensionName: SwagPlatformDemoData
       shopwareVersion: trunk
@@ -31,7 +28,7 @@ jobs:
         shopware-version:
           - trunk
           - 6.5.x
-    uses: shopwareLabs/actions/.github/workflows/phpunit.yml@main
+    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
     with:
       extensionName: SwagPlatformDemoData
       shopwareVersion: ${{ matrix.shopware-version }}
