@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /*
  * (c) shopware AG <info@shopware.com>
  * For the full copyright and license information, please view the LICENSE
@@ -94,7 +96,7 @@ class DemoDataService
                 $response = $this->sync->sync($request, $context);
                 $this->requestStack->pop();
 
-                $result = \json_decode((string)$response->getContent(), true);
+                $result = \json_decode((string) $response->getContent(), true);
 
                 if ($response->getStatusCode() >= 400) {
                     throw new \RuntimeException(\sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), \print_r($result, true)));
