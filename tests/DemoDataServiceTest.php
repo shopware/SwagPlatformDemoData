@@ -38,9 +38,7 @@ class DemoDataServiceTest extends TestCase
 
     public function testGenerate(): void
     {
-        // @phpstan-ignore-next-line
         $demoDataService = $this->getContainer()->get(DemoDataService::class);
-        static::assertInstanceOf(DemoDataService::class, $demoDataService);
 
         $context = new Context(new SystemSource());
         $demoDataService->generate($context);
