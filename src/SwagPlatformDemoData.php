@@ -14,7 +14,7 @@ use Shopware\Core\Framework\Plugin;
 use Shopware\Core\Framework\Plugin\Context\ActivateContext;
 use Shopware\Core\Framework\Plugin\Context\DeactivateContext;
 
-#[Package('services-settings')]
+#[Package('fundamentals@after-sales')]
 class SwagPlatformDemoData extends Plugin
 {
     public function activate(ActivateContext $activateContext): void

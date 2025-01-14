@@ -18,7 +18,7 @@ use Swag\PlatformDemoData\DataProvider\DemoDataProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-#[Package('services-settings')]
+#[Package('fundamentals@after-sales')]
 class DemoDataService
 {
     private SyncController $sync;
