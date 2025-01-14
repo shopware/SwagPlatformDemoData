@@ -14,7 +14,7 @@ use Shopware\Core\Content\Cms\DataResolver\FieldConfig;
 use Shopware\Core\Framework\Log\Package;
 use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
 
-#[Package('services-settings')]
+#[Package('fundamentals@after-sales')]
 class CmsPageProvider extends DemoDataProvider
 {
     private TranslationHelper $translationHelper;

@@ -12,7 +12,7 @@ namespace Swag\PlatformDemoData\DataProvider;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Framework\Log\Package;
 
-#[Package('services-settings')]
+#[Package('fundamentals@after-sales')]
 class RuleProvider extends DemoDataProvider
 {
     private Connection $connection;
