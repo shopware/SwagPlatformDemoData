@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Swag\PlatformDemoData;
 
-use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Shopware\Core\Framework\Api\Controller\SyncController;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Write\Validation\RestrictDeleteViolationException;
@@ -71,6 +70,7 @@ class DemoDataService
     {
         foreach ($this->demoDataProvider as $dataProvider) {
             $payloadsIds = [];
+
             foreach ($dataProvider->getPayload() as $entry) {
                 if ($dataProvider->getEntity() === 'category' && isset($entry['children'])) {
                     foreach ($entry['children'] as $child) {
@@ -101,7 +101,7 @@ class DemoDataService
                 if ($response->getStatusCode() >= 400) {
                     throw new \RuntimeException(\sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), \print_r($result, true)));
                 }
-            } catch (RestrictDeleteViolationException|ForeignKeyConstraintViolationException) {
+            } catch (RestrictDeleteViolationException) {
                 // ignore
             }
         }
