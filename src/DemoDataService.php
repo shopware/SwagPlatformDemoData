@@ -41,7 +41,7 @@ class DemoDataService
 
     public function generate(Context $context): void
     {
-        foreach ($this->demoDataProvider as $dataProvider) {
+        foreach ($this->getSortedDemoDataProviders('create') as $dataProvider) {
             $payload = [
                 [
                     'action' => $dataProvider->getAction(),
@@ -68,7 +68,7 @@ class DemoDataService
 
     public function delete(Context $context): void
     {
-        foreach ($this->demoDataProvider as $dataProvider) {
+        foreach ($this->getSortedDemoDataProviders('delete') as $dataProvider) {
             $payloadsIds = [];
 
             foreach ($dataProvider->getPayload() as $entry) {
@@ -105,5 +105,24 @@ class DemoDataService
                 // ignore
             }
         }
+    }
+
+    /**
+     * @return DemoDataProvider[]
+     */
+    private function getSortedDemoDataProviders(string $sequence): array
+    {
+        if (!\in_array($sequence, ['create', 'delete'], true)) {
+            throw new \InvalidArgumentException('Invalid sequence: use \'create\' or \'delete\'.');
+        }
+
+        $demoDataProviders = iterator_to_array($this->demoDataProvider);
+
+        usort(
+            $demoDataProviders,
+            fn (DemoDataProvider $a, DemoDataProvider $b) => $b->getStages()[$sequence] <=> $a->getStages()[$sequence]
+        );
+
+        return $demoDataProviders;
     }
 }
