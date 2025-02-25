@@ -37,7 +37,7 @@ class DbHelper
                 FROM language
                 WHERE locale_id = UNHEX(:localeId)
             ',
-            ['localeId' => $localeId]
+            ['localeId' => $localeId],
         );
 
         if ($result === false) {
@@ -55,7 +55,7 @@ class DbHelper
                 FROM language
                 WHERE id = UNHEX(:systemLanguageId)
             ',
-            ['systemLanguageId' => Defaults::LANGUAGE_SYSTEM]
+            ['systemLanguageId' => Defaults::LANGUAGE_SYSTEM],
         );
 
         if ($systemLanguageLocaleId === false) {
@@ -68,7 +68,7 @@ class DbHelper
                 FROM locale
                 WHERE id = UNHEX(:systemLanguageLocaleId)
             ',
-            ['systemLanguageLocaleId' => $systemLanguageLocaleId]
+            ['systemLanguageLocaleId' => $systemLanguageLocaleId],
         );
 
         if ($systemLanguageCode === false) {
@@ -86,7 +86,7 @@ class DbHelper
                 FROM locale
                 WHERE code = :languageCode
             ',
-            ['languageCode' => $languageCode]
+            ['languageCode' => $languageCode],
         );
 
         if ($result === false) {

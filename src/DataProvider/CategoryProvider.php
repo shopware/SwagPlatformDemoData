@@ -228,7 +228,7 @@ class CategoryProvider extends DemoDataProvider
                 WHERE cms_page.locked
                 AND name = :name
             ',
-            ['name' => $name]
+            ['name' => $name],
         );
 
         return $id !== false ? $id : null;

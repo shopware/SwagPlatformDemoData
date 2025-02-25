@@ -35,7 +35,5 @@ abstract class DemoDataProvider
         ];
     }
 
-    public function finalize(Context $context): void
-    {
-    }
+    public function finalize(Context $context): void {}
 }
