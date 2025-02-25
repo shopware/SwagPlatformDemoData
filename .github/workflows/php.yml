@@ -1,4 +1,5 @@
-name: PHP
+name: PHP checks
+
 on:
   pull_request:
     paths:
@@ -12,22 +13,25 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 3 * * *'
+
 jobs:
   cs:
     if: github.event_name != 'schedule'
     uses: shopware/github-actions/.github/workflows/cs-fixer.yml@main
+
   phpstan:
     uses: shopware/github-actions/.github/workflows/phpstan.yml@main
     with:
       extensionName: SwagPlatformDemoData
       shopwareVersion: trunk
+
   phpunit:
     strategy:
       fail-fast: false
       matrix:
         shopware-version:
           - trunk
-          - 6.5.x
+          - 6.6.x
     uses: shopware/github-actions/.github/workflows/phpunit.yml@main
     with:
       extensionName: SwagPlatformDemoData
