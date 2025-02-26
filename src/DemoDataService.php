@@ -120,7 +120,7 @@ class DemoDataService
 
         usort(
             $demoDataProviders,
-            fn (DemoDataProvider $a, DemoDataProvider $b) => $b->getStages()[$sequence] <=> $a->getStages()[$sequence]
+            fn(DemoDataProvider $a, DemoDataProvider $b) => $b->getStages()[$sequence] <=> $a->getStages()[$sequence],
         );
 
         return $demoDataProviders;

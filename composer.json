@@ -14,6 +14,8 @@
     },
     "extra": {
         "shopware-plugin-class": "Swag\\PlatformDemoData\\SwagPlatformDemoData",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by shopware AG",
         "label": {
             "de-DE": "Shopware 6 Demodaten",
             "en-GB": "Shopware 6 Demo data"
@@ -36,11 +38,23 @@
             "Swag\\PlatformDemoData\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Swag\\PlatformDemoData\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "cs": "../../../vendor/bin/php-cs-fixer fix --dry-run",
         "cs-fix": "../../../vendor/bin/php-cs-fixer fix",
         "phpstan": [
+            "php ../../../src/Core/DevOps/StaticAnalyze/phpstan-bootstrap.php",
+            "php bin/phpstan-config-generator.php",
             "../../../vendor/bin/phpstan analyze"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
     }
 }
