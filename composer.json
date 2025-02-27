@@ -25,8 +25,8 @@
             "en-GB": "Demo data plugin for Shopware 6. Do not use in production environments! The data is imported on plugin activation and it will overwritten existing data."
         },
         "manufacturerLink": {
-            "de-DE": "https://store.shopware.com/shopware-ag.html",
-            "en-GB": "https://store.shopware.com/en/shopware-ag.html"
+            "de-DE": "https://store.shopware.com/de/extension-partners/shopware-ag",
+            "en-GB": "https://store.shopware.com/en/extension-partners/shopware-ag"
         },
         "supportLink": {
             "de-DE": "https://docs.shopware.com/de",
