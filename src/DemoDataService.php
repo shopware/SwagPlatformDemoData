@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Swag\PlatformDemoData;
 
-use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Shopware\Core\Framework\Api\Controller\SyncController;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Write\Validation\RestrictDeleteViolationException;
@@ -42,7 +41,7 @@ class DemoDataService
 
     public function generate(Context $context): void
     {
-        foreach ($this->demoDataProvider as $dataProvider) {
+        foreach ($this->getSortedDemoDataProviders('create') as $dataProvider) {
             $payload = [
                 [
                     'action' => $dataProvider->getAction(),
@@ -69,8 +68,9 @@ class DemoDataService
 
     public function delete(Context $context): void
     {
-        foreach ($this->demoDataProvider as $dataProvider) {
+        foreach ($this->getSortedDemoDataProviders('delete') as $dataProvider) {
             $payloadsIds = [];
+
             foreach ($dataProvider->getPayload() as $entry) {
                 if ($dataProvider->getEntity() === 'category' && isset($entry['children'])) {
                     foreach ($entry['children'] as $child) {
@@ -101,9 +101,28 @@ class DemoDataService
                 if ($response->getStatusCode() >= 400) {
                     throw new \RuntimeException(\sprintf('Error deleting "%s": %s', $dataProvider->getEntity(), \print_r($result, true)));
                 }
-            } catch (RestrictDeleteViolationException|ForeignKeyConstraintViolationException) {
+            } catch (RestrictDeleteViolationException) {
                 // ignore
             }
         }
+    }
+
+    /**
+     * @return DemoDataProvider[]
+     */
+    private function getSortedDemoDataProviders(string $sequence): array
+    {
+        if (!\in_array($sequence, ['create', 'delete'], true)) {
+            throw new \InvalidArgumentException('Invalid sequence: use \'create\' or \'delete\'.');
+        }
+
+        $demoDataProviders = iterator_to_array($this->demoDataProvider);
+
+        usort(
+            $demoDataProviders,
+            fn(DemoDataProvider $a, DemoDataProvider $b) => $b->getStages()[$sequence] <=> $a->getStages()[$sequence],
+        );
+
+        return $demoDataProviders;
     }
 }

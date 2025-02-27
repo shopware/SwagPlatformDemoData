@@ -41,6 +41,17 @@ class ProductProvider extends DemoDataProvider
         return 'product';
     }
 
+    /**
+     * @return array<string, int>
+     */
+    public function getStages(): array
+    {
+        return [
+            'create' => 0,
+            'delete' => 1,
+        ];
+    }
+
     public function getPayload(): array
     {
         $taxId = $this->getTaxId();

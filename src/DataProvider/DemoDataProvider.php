@@ -24,7 +24,16 @@ abstract class DemoDataProvider
      */
     abstract public function getPayload(): array;
 
-    public function finalize(Context $context): void
+    /**
+     * @return array<string, int>
+     */
+    public function getStages(): array
     {
+        return [
+            'create' => 0,
+            'delete' => 0,
+        ];
     }
+
+    public function finalize(Context $context): void {}
 }

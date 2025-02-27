@@ -96,11 +96,11 @@ class MediaProvider extends DemoDataProvider
                     $file,
                     \mime_content_type($file) ?: 'application/octet-stream',
                     \pathinfo($file, \PATHINFO_EXTENSION),
-                    \filesize($file) ?: 0
+                    \filesize($file) ?: 0,
                 ),
                 \pathinfo($file, \PATHINFO_FILENAME),
                 \basename(\dirname($file)),
-                $context
+                $context,
             );
         }
 

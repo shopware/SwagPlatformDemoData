@@ -13,7 +13,9 @@ return (new Config())
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
+        '@PER-CS2.0' => true,
 
+        'no_unused_imports' => true,
         'blank_line_after_opening_tag' => false,
         'class_attributes_separation' => ['elements' => ['property' => 'one', 'method' => 'one']],
         'concat_space' => ['spacing' => 'one'],

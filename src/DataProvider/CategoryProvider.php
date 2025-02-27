@@ -11,7 +11,6 @@ namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Category\CategoryCollection;
-use Shopware\Core\Content\Category\CategoryEntity;
 use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -229,7 +228,7 @@ class CategoryProvider extends DemoDataProvider
                 WHERE cms_page.locked
                 AND name = :name
             ',
-            ['name' => $name]
+            ['name' => $name],
         );
 
         return $id !== false ? $id : null;
