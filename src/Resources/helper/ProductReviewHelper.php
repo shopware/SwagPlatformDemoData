@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace Swag\PlatformDemoData\Resources\helper;
 
+use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\PlatformDemoData\DataProvider\CustomerProvider;
 
+#[Package('fundamentals@after-sales')]
 class ProductReviewHelper
 {
     public function createReviews(string $salesChannelId, string $languageId): array
