@@ -21,6 +21,8 @@ use Shopware\Core\Framework\Log\Package;
 #[Package('fundamentals@after-sales')]
 class CustomerProvider extends DemoDataProvider
 {
+    public const CUSTOMER_ID = '6c97534c2c0747f39e8751e43cb2b013';
+
     private Connection $connection;
 
     /**
@@ -56,7 +58,7 @@ class CustomerProvider extends DemoDataProvider
 
         return [
             [
-                'id' => '6c97534c2c0747f39e8751e43cb2b013',
+                'id' => self::CUSTOMER_ID,
                 'defaultPaymentMethodId' => $paymentMethodId,
                 'salutationId' => $salutationId,
                 'salesChannelId' => $salesChannelId,
