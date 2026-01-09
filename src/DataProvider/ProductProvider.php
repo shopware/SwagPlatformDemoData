@@ -64,7 +64,7 @@ class ProductProvider extends DemoDataProvider
     {
         $taxId = $this->getTaxId();
         $storefrontSalesChannel = $this->getStorefrontSalesChannel();
-        $enLanguageId = $this->dbHelper->getLanguageId('en-GB');
+        $enLanguageId = Defaults::LANGUAGE_SYSTEM;
 
         return [
             [

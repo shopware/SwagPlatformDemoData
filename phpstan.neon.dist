@@ -19,9 +19,3 @@ parameters:
     type_perfect:
         narrow_return: true
         narrow_param: true
-
-    ignoreErrors:
-        - message: '#.* has unknown class Swag\\PlatformDemoData\\Resources\\helper\\TranslationHelper as its type.#'
-          paths:
-            - src
-            - tests
