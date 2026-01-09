@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Swag\PlatformDemoData\helper;
 
 use Shopware\Core\Framework\Log\Package;
-use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\PlatformDemoData\DataProvider\CustomerProvider;
 
 #[Package('fundamentals@after-sales')]
@@ -19,11 +18,11 @@ class ProductReviewHelper
     /**
      * @return array<int, array<string, mixed>>
      */
-    public function createReviews(string $salesChannelId, string $languageId): array
+    public function createReviews(string $salesChannelId, string $languageId, string $productIdSuffix): array
     {
         return [
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'bc3b8f5a91294148bd9e' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -33,7 +32,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '6b9697a1bc474bbba746' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -43,7 +42,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '3252705de9f74c978378' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -53,7 +52,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'e14609c74a8846f49b72' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -63,7 +62,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '069bbd0bc4be4cc48010' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -73,7 +72,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'aaf8cfcfdb2a4119940a' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -83,7 +82,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '558ebb6881ee4be4ace0' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -93,7 +92,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '6db0c9a73d08467fadd6' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -103,7 +102,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'a677a16c9db945f6ae39' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -113,7 +112,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '29342e2bb0a742429e46' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -123,7 +122,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'e7f51983ff5f44848ed2' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -133,7 +132,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'e52d82f3f8344b7f9de0' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -143,7 +142,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'ef18e5dba80a4bd6a933' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -153,7 +152,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => '3569e6d6fde14c4c956d' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,
@@ -163,7 +162,7 @@ class ProductReviewHelper
                 'status' => true,
             ],
             [
-                'id' => Uuid::randomHex(),
+                'id' => 'bb335ee68add4f8a9f23' . $productIdSuffix,
                 'salesChannelId' => $salesChannelId,
                 'customerId' => CustomerProvider::CUSTOMER_ID,
                 'languageId' => $languageId,

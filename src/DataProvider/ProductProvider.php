@@ -147,7 +147,7 @@ class ProductProvider extends DemoDataProvider
                         'visibility' => ProductVisibilityDefinition::VISIBILITY_ALL,
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, 'a354cbf0b967'),
             ],
             [
                 'id' => '1901dc5e888f4b1ea4168c2c5f005540',
@@ -213,7 +213,7 @@ class ProductProvider extends DemoDataProvider
                         'id' => '77421c4f75af40c8a57657cdc2ad49a2',
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, '8c2c5f005540'),
             ],
             [
                 'id' => '2a88d9b59d474c7e869d8071649be43c',
@@ -286,7 +286,7 @@ class ProductProvider extends DemoDataProvider
                         'id' => 'dc6f98beeca44852beb078a9e8e21e7d',
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, '8071649be43c'),
             ],
             [
                 'id' => '3ac014f329884b57a2cce5a29f34779c',
@@ -349,7 +349,7 @@ class ProductProvider extends DemoDataProvider
                         'id' => 'c53fa30db00e4a84b4516f6b07c02e8d',
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, 'e5a29f34779c'),
             ],
             [
                 'id' => '43a23e0c03bf4ceabc6055a2185faa87',
@@ -509,7 +509,7 @@ class ProductProvider extends DemoDataProvider
                         ],
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, '55a2185faa87'),
             ],
             [
                 'id' => 'c7bca22753c84d08b6178a50052b4146',
@@ -635,7 +635,7 @@ class ProductProvider extends DemoDataProvider
                         ],
                     ],
                 ],
-                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId),
+                'productReviews' => $this->productReviewHelper->createReviews($storefrontSalesChannel, $enLanguageId, '8a50052b4146'),
             ],
         ];
     }
