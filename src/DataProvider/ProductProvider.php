@@ -14,9 +14,8 @@ use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityD
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\PlatformDemoData\Resources\helper\DbHelper;
-use Swag\PlatformDemoData\Resources\helper\ProductReviewHelper;
-use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
+use Swag\PlatformDemoData\helper\ProductReviewHelper;
+use Swag\PlatformDemoData\helper\TranslationHelper;
 
 #[Package('fundamentals@after-sales')]
 class ProductProvider extends DemoDataProvider
@@ -27,15 +26,12 @@ class ProductProvider extends DemoDataProvider
 
     private TranslationHelper $translationHelper;
 
-    private DbHelper $dbHelper;
-
     private ProductReviewHelper $productReviewHelper;
 
     public function __construct(Connection $connection)
     {
         $this->connection = $connection;
         $this->translationHelper = new TranslationHelper($connection);
-        $this->dbHelper = new DbHelper($connection);
         $this->productReviewHelper = new ProductReviewHelper();
     }
 

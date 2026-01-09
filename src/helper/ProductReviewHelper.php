@@ -7,7 +7,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Swag\PlatformDemoData\Resources\helper;
+namespace Swag\PlatformDemoData\helper;
 
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Uuid\Uuid;
@@ -16,6 +16,9 @@ use Swag\PlatformDemoData\DataProvider\CustomerProvider;
 #[Package('fundamentals@after-sales')]
 class ProductReviewHelper
 {
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     public function createReviews(string $salesChannelId, string $languageId): array
     {
         return [

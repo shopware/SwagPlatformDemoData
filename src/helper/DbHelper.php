@@ -7,7 +7,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Swag\PlatformDemoData\Resources\helper;
+namespace Swag\PlatformDemoData\helper;
 
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Defaults;
