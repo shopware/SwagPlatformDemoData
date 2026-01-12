@@ -79,10 +79,12 @@ jobs:
         shopware-version:
           - trunk
           - 6.6.x
-    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
+    uses: shopware/github-actions/setup-extension@main
     with:
       extensionName: '${{ github.event.repository.name }}'
       shopwareVersion: '${{ matrix.shopware-version }}'
+    secrets:
+      codecovToken: '${{ secrets.CODECOV_TOKEN }}'
 
   smoke_test:
     runs-on: ubuntu-latest
