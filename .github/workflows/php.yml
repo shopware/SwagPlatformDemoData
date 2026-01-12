@@ -79,7 +79,7 @@ jobs:
         shopware-version:
           - trunk
           - 6.6.x
-    uses: shopware/github-actions/setup-extension@main
+    uses: shopware/github-actions/.github/workflows/phpunit.yml@main
     with:
       extensionName: '${{ github.event.repository.name }}'
       shopwareVersion: '${{ matrix.shopware-version }}'
