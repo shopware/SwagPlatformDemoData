@@ -12,7 +12,7 @@ namespace Swag\PlatformDemoData\DataProvider;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Content\Cms\DataResolver\FieldConfig;
 use Shopware\Core\Framework\Log\Package;
-use Swag\PlatformDemoData\Resources\helper\TranslationHelper;
+use Swag\PlatformDemoData\Helper\TranslationHelper;
 
 #[Package('fundamentals@after-sales')]
 class CmsPageProvider extends DemoDataProvider

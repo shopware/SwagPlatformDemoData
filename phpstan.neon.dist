@@ -12,7 +12,7 @@ parameters:
         - src/Resources
 
     symfony:
-        constant_hassers: false
+        constantHassers: false
         containerXmlPath: '../../..%ShopwareHashedCacheDir%/%ShopwareKernelClass%DevDebugContainer.xml'
         consoleApplicationLoader: %ShopwareRoot%/src/Core/DevOps/StaticAnalyze/console-application.php
 
