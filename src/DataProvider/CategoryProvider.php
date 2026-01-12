@@ -17,7 +17,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Log\Package;
-use Swag\PlatformDemoData\helper\TranslationHelper;
+use Swag\PlatformDemoData\Helper\TranslationHelper;
 
 #[Package('fundamentals@after-sales')]
 class CategoryProvider extends DemoDataProvider

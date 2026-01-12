@@ -7,7 +7,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Swag\PlatformDemoData\helper;
+namespace Swag\PlatformDemoData\Helper;
 
 use Shopware\Core\Framework\Log\Package;
 use Swag\PlatformDemoData\DataProvider\CustomerProvider;

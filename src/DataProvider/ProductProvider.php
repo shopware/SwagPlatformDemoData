@@ -14,8 +14,8 @@ use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityD
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Uuid\Uuid;
-use Swag\PlatformDemoData\helper\ProductReviewHelper;
-use Swag\PlatformDemoData\helper\TranslationHelper;
+use Swag\PlatformDemoData\Helper\ProductReviewHelper;
+use Swag\PlatformDemoData\Helper\TranslationHelper;
 
 #[Package('fundamentals@after-sales')]
 class ProductProvider extends DemoDataProvider
