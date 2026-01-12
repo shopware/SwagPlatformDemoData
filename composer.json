@@ -50,7 +50,8 @@
             "php ../../../src/Core/DevOps/StaticAnalyze/phpstan-bootstrap.php",
             "php bin/phpstan-config-generator.php",
             "../../../vendor/bin/phpstan analyze"
-        ]
+        ],
+        "phpunit": "../../../vendor/bin/phpunit"
     },
     "config": {
         "allow-plugins": {
