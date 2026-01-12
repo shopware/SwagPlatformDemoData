@@ -83,9 +83,6 @@ jobs:
     with:
       extensionName: '${{ github.event.repository.name }}'
       shopwareVersion: '${{ matrix.shopware-version }}'
-      uploadCoverage: true
-    secrets:
-      codecovToken: '${{ secrets.CODECOV_TOKEN }}'
 
   smoke_test:
     runs-on: ubuntu-latest
