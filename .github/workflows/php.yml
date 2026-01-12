@@ -81,7 +81,6 @@ jobs:
           - 6.6.x
     uses: shopware/github-actions/.github/workflows/phpunit.yml@main
     with:
-      filterName: 'integration'
       extensionName: '${{ github.event.repository.name }}'
       shopwareVersion: '${{ matrix.shopware-version }}'
     secrets:
