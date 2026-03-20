@@ -18,9 +18,6 @@ use Swag\PlatformDemoData\DemoDataService;
 return static function (ContainerConfigurator $container): void {
     $services = $container->services();
 
-    $services->defaults()
-        ->private();
-
     $services->set(DemoDataService::class)
         ->public()
         ->args([
