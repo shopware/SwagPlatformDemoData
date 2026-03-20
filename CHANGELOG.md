@@ -1,3 +1,6 @@
+# NEXT
+- #15568 - Switched to PHP Symfony service definitions
+
 # 2.1.0
 - NEXT-40431 - Compatibility with Shopware 6.7.
 - NEXT-40431 - Increased the minimum required Shopware version to 6.6.x or 6.7.x.
