@@ -1,0 +1,32 @@
+name: Reusable Smoke test
+
+on:
+  workflow_call:
+    inputs:
+      extension_name:
+        required: true
+        type: string
+
+jobs:
+  smoke_test:
+    name: Smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup extension
+        uses: shopware/github-actions/setup-extension@main
+        with:
+          extensionName: ${{ inputs.extension_name }}
+          install: true
+          install-admin: true
+          install-storefront: true
+          extraRepositories: |
+            {
+              "${{ inputs.extension_name }}": {
+                "type": "path",
+                "url": "custom/plugins/${{ inputs.extension_name }}",
+                "symlink": true
+              }
+            }
+
+      - name: Uninstall Plugin
+        run: php bin/console plugin:uninstall ${{ inputs.extension_name }}
