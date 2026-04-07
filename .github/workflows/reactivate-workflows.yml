@@ -14,8 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        WORKFLOW: ["PHP checks", "Reactivate Workflows"]
+        WORKFLOW: ["nightly.yml", "reactivate-workflows.yml"]
     steps:
       - name: Reactivate workflow
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         shell: bash
         run: gh workflow enable "${{ matrix.WORKFLOW }}"
