@@ -3,6 +3,7 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use Doctrine\DBAL\Connection;
+use Psr\Clock\ClockInterface;
 use Shopware\Core\Content\Media\File\FileSaver;
 use Shopware\Core\Framework\Api\Controller\SyncController;
 use Swag\PlatformDemoData\DataProvider\CategoryProvider;
@@ -60,7 +61,10 @@ return static function (ContainerConfigurator $container): void {
         ->tag('swag.demo_data.data_provider', ['priority' => 500]);
 
     $services->set(ProductProvider::class)
-        ->args([service(Connection::class)])
+        ->args([
+            service(Connection::class),
+            service(ClockInterface::class),
+        ])
         ->tag('swag.demo_data.data_provider', ['priority' => 400]);
 
     $services->set(ShippingMethodProvider::class)

@@ -1,4 +1,5 @@
 # NEXT
+- Replaced native time reads in ProductProvider with an injected clock (Psr\Clock\ClockInterface)
 - #15568 - Switched to PHP Symfony service definitions
 
 # 2.1.0
