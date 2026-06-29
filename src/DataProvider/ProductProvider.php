@@ -10,12 +10,14 @@ declare(strict_types=1);
 namespace Swag\PlatformDemoData\DataProvider;
 
 use Doctrine\DBAL\Connection;
+use Psr\Clock\ClockInterface;
 use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Swag\PlatformDemoData\Helper\ProductReviewHelper;
 use Swag\PlatformDemoData\Helper\TranslationHelper;
+use Symfony\Component\Clock\NativeClock;
 
 #[Package('fundamentals@after-sales')]
 class ProductProvider extends DemoDataProvider
@@ -28,9 +30,12 @@ class ProductProvider extends DemoDataProvider
 
     private ProductReviewHelper $productReviewHelper;
 
-    public function __construct(Connection $connection)
+    private ClockInterface $clock;
+
+    public function __construct(Connection $connection, ?ClockInterface $clock = null)
     {
         $this->connection = $connection;
+        $this->clock = $clock ?? new NativeClock();
         $this->translationHelper = new TranslationHelper($connection);
         $this->productReviewHelper = new ProductReviewHelper();
     }
@@ -77,7 +82,7 @@ class ProductProvider extends DemoDataProvider
                 'width' => 590.0,
                 'height' => 600.0,
                 'length' => 840.0,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit erweiterten Preisen',
@@ -159,7 +164,7 @@ class ProductProvider extends DemoDataProvider
                 'referenceUnit' => 250.0,
                 'shippingFree' => false,
                 'purchasePrice' => 1.99,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Bewertungen',
@@ -226,7 +231,7 @@ class ProductProvider extends DemoDataProvider
                 'shippingFree' => false,
                 'purchasePrice' => 495.95,
                 'weight' => 0.17,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptartikel',
@@ -299,7 +304,7 @@ class ProductProvider extends DemoDataProvider
                 'shippingFree' => true,
                 'purchasePrice' => 20,
                 'weight' => 0.15,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt, versandkostenfrei mit Hervorhebung',
@@ -362,7 +367,7 @@ class ProductProvider extends DemoDataProvider
                 'shippingFree' => true,
                 'purchasePrice' => 19.99,
                 'weight' => 0.5,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Variantenprodukt',
@@ -521,7 +526,7 @@ class ProductProvider extends DemoDataProvider
                 'referenceUnit' => 1.0,
                 'shippingFree' => true,
                 'purchasePrice' => 19.99,
-                'releaseDate' => new \DateTimeImmutable(),
+                'releaseDate' => $this->clock->now(),
                 'displayInListing' => true,
                 'name' => $this->translationHelper->adjustTranslations([
                     'de-DE' => 'Hauptprodukt mit Eigenschaften',
