@@ -17,6 +17,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 #[Package('fundamentals@after-sales')]
 class CustomerProvider extends DemoDataProvider
@@ -145,15 +146,15 @@ class CustomerProvider extends DemoDataProvider
         }
 
         $navigationSalesChannelId = $this->connection->fetchOne('
-            SELECT LOWER(HEX(`id`))
+            SELECT `id`
             FROM `sales_channel`
-            WHERE `navigation_category_id` = UNHEX(:rootCategoryId)
+            WHERE `navigation_category_id` = :rootCategoryId
             LIMIT 1;
-        ', ['rootCategoryId' => $rootCategoryId]);
+        ', ['rootCategoryId' => Uuid::fromHexToBytes($rootCategoryId)]);
         if (!$navigationSalesChannelId) {
             throw new \RuntimeException('Sales channel not found');
         }
 
-        return (string) $navigationSalesChannelId;
+        return Uuid::fromBytesToHex((string) $navigationSalesChannelId);
     }
 }
