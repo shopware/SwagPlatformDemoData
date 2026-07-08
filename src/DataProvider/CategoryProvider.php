@@ -192,12 +192,12 @@ class CategoryProvider extends DemoDataProvider
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('parentId', null));
 
-        $rootCategory = $this->categoryRepository->search($criteria, new Context(new SystemSource()))->getEntities()->first();
-        if (!$rootCategory) {
+        $rootCategoryId = $this->categoryRepository->searchIds($criteria, new Context(new SystemSource()))->firstId();
+        if ($rootCategoryId === null) {
             throw new \RuntimeException('Root category not found');
         }
 
-        return $rootCategory->getId();
+        return $rootCategoryId;
     }
 
     private function getDefaultCmsListingPageId(): string
