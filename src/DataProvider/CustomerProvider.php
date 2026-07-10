@@ -17,6 +17,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 #[Package('fundamentals@after-sales')]
 class CustomerProvider extends DemoDataProvider
@@ -138,23 +139,23 @@ class CustomerProvider extends DemoDataProvider
     {
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('parentId', null));
-        $criteria->addAssociation('navigationSalesChannels');
 
-        $rootCategory = $this->categoryRepository->search($criteria, new Context(new SystemSource()))->getEntities()->first();
-        if (!$rootCategory) {
+        $rootCategoryId = $this->categoryRepository->searchIds($criteria, new Context(new SystemSource()))->firstId();
+        if ($rootCategoryId === null) {
             throw new \RuntimeException('Root category not found');
         }
 
-        $navigationSalesChannels = $rootCategory->getNavigationSalesChannels();
-        if ($navigationSalesChannels === null) {
+        $navigationSalesChannelId = $this->connection->fetchOne('
+            SELECT `id`
+            FROM `sales_channel`
+            WHERE `navigation_category_id` = :rootCategoryId
+            LIMIT 1;
+        ', ['rootCategoryId' => Uuid::fromHexToBytes($rootCategoryId)]);
+
+        if (!$navigationSalesChannelId) {
             throw new \RuntimeException('Sales channel not found');
         }
 
-        $navigationSalesChannel = $navigationSalesChannels->first();
-        if (!$navigationSalesChannel) {
-            throw new \RuntimeException('Sales channel not found');
-        }
-
-        return $navigationSalesChannel->getId();
+        return Uuid::fromBytesToHex((string) $navigationSalesChannelId);
     }
 }
