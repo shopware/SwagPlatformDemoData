@@ -12,6 +12,7 @@ namespace Swag\PlatformDemoData\Helper;
 use Doctrine\DBAL\Connection;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 #[Package('fundamentals@after-sales')]
 class DbHelper
@@ -35,9 +36,9 @@ class DbHelper
             '
                 SELECT LOWER(HEX(id))
                 FROM language
-                WHERE locale_id = UNHEX(:localeId)
+                WHERE locale_id = :localeId
             ',
-            ['localeId' => $localeId],
+            ['localeId' => Uuid::fromHexToBytes($localeId)],
         );
 
         if ($result === false) {
@@ -53,9 +54,9 @@ class DbHelper
             '
                 SELECT LOWER(HEX(locale_id))
                 FROM language
-                WHERE id = UNHEX(:systemLanguageId)
+                WHERE id = :systemLanguageId
             ',
-            ['systemLanguageId' => Defaults::LANGUAGE_SYSTEM],
+            ['systemLanguageId' => Uuid::fromHexToBytes(Defaults::LANGUAGE_SYSTEM)],
         );
 
         if ($systemLanguageLocaleId === false) {
@@ -66,9 +67,9 @@ class DbHelper
             '
                 SELECT code
                 FROM locale
-                WHERE id = UNHEX(:systemLanguageLocaleId)
+                WHERE id = :systemLanguageLocaleId
             ',
-            ['systemLanguageLocaleId' => $systemLanguageLocaleId],
+            ['systemLanguageLocaleId' => Uuid::fromHexToBytes($systemLanguageLocaleId)],
         );
 
         if ($systemLanguageCode === false) {

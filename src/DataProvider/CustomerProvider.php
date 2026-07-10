@@ -151,6 +151,7 @@ class CustomerProvider extends DemoDataProvider
             WHERE `navigation_category_id` = :rootCategoryId
             LIMIT 1;
         ', ['rootCategoryId' => Uuid::fromHexToBytes($rootCategoryId)]);
+
         if (!$navigationSalesChannelId) {
             throw new \RuntimeException('Sales channel not found');
         }
