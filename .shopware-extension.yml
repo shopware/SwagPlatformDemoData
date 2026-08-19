@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=https://shopware.github.io/shopware-cli/shopware-extension-schema.json
+compatibility_date: '2026-08-19'
+
+validation:
+  ignore:
+    # 6.6.0 does not know the 'fundamentals@after-sales' package label
+    - message: 'Parameter #1 $package of attribute class Shopware\Core\Framework\Log\Package constructor expects'
