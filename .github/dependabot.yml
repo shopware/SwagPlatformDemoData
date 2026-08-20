@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+      semver-minor-days: 14
+      semver-patch-days: 7
+    reviewers:
+      - 'shopware/product-cc-after-sales'
+    commit-message:
+      prefix: 'chore'
+    groups:
+      github-actions:
+        patterns:
+          - '*'
