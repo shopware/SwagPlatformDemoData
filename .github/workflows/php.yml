@@ -2,11 +2,6 @@ name: PHP checks
 
 on:
   pull_request:
-    paths:
-      - composer.json
-      - src/**/*.php
-      - tests/**/*.php
-      - .github/workflows/**
   push:
     branches:
       - trunk
