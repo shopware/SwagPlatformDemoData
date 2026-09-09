@@ -57,6 +57,9 @@ jobs:
     with:
       extension_name: ${{ github.event.repository.name }}
       platform_branch: ${{ matrix.shopware-version }}
+      coverage: ${{ matrix.shopware-version == 'trunk' }}
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   smoke_test:
     name: Smoke test
