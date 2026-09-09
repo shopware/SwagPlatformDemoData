@@ -32,4 +32,6 @@ jobs:
             }
 
       - name: Run PHPUnit
-        run: composer -d custom/plugins/${{ inputs.extension_name }} run phpunit
+        run: |
+          composer -d custom/plugins/${{ inputs.extension_name }} run phpunit -- --log-junit junit.xml
+          grep -q '</testsuites>' custom/plugins/${{ inputs.extension_name }}/junit.xml
