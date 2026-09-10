@@ -41,6 +41,8 @@ jobs:
       - name: Run PHPUnit
         run: |
           composer -d custom/plugins/${{ inputs.extension_name }} run phpunit -- --log-junit junit.xml ${{ inputs.coverage && '--coverage-clover clover.xml' || '' }}
+          # PHPUnit writes </testsuites> only once the whole suite has run, so a report without it
+          # means the process died early (e.g. exit() in code under test) even though it exited 0
           grep -q '</testsuites>' custom/plugins/${{ inputs.extension_name }}/junit.xml
 
       - name: Upload coverage to Codecov
