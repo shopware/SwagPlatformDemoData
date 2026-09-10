@@ -14,3 +14,5 @@ node_modules
 /src/Resources/app/administration/test/e2e/cypress/results/
 /src/Resources/app/administration/test/app/
 /src/Resources/public/
+junit.xml
+clover.xml

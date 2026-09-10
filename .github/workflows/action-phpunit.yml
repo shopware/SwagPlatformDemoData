@@ -9,6 +9,13 @@ on:
       platform_branch:
         required: true
         type: string
+      coverage:
+        required: false
+        type: boolean
+        default: false
+    secrets:
+      CODECOV_TOKEN:
+        required: false
 
 jobs:
   phpunit:
@@ -32,4 +39,18 @@ jobs:
             }
 
       - name: Run PHPUnit
-        run: composer -d custom/plugins/${{ inputs.extension_name }} run phpunit
+        run: |
+          composer -d custom/plugins/${{ inputs.extension_name }} run phpunit -- --log-junit junit.xml ${{ inputs.coverage && '--coverage-clover clover.xml' || '' }}
+          # PHPUnit writes </testsuites> only once the whole suite has run, so a report without it
+          # means the process died early (e.g. exit() in code under test) even though it exited 0
+          grep -q '</testsuites>' custom/plugins/${{ inputs.extension_name }}/junit.xml
+
+      - name: Upload coverage to Codecov
+        if: inputs.coverage
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          root_dir: ${{ github.workspace }}/custom/plugins/${{ inputs.extension_name }}
+          working-directory: ${{ github.workspace }}/custom/plugins/${{ inputs.extension_name }}
+          files: ./clover.xml
