@@ -15,6 +15,8 @@ use Shopware\Core\Framework\Log\Package;
 #[Package('fundamentals@after-sales')]
 class RuleProvider extends DemoDataProvider
 {
+    public const CART_AMOUNT_RULE_ID = 'e1378db7808a478f919e0d740d5d6c1a';
+
     private Connection $connection;
 
     public function __construct(Connection $connection)
@@ -134,7 +136,7 @@ class RuleProvider extends DemoDataProvider
                 ],
             ],
             [
-                'id' => 'e1378db7808a478f919e0d740d5d6c1a',
+                'id' => self::CART_AMOUNT_RULE_ID,
                 'name' => 'Warenkorbwert größer/gleich 0',
                 'priority' => 100,
                 'conditions' => [

@@ -34,12 +34,11 @@ class ShippingMethodProvider extends DemoDataProvider
 
     public function getPayload(): array
     {
-        $ruleId = $this->getRuleId();
         $payload = [];
         foreach ($this->getShippingMethodIds() as $shippingMethodId) {
             $payload[] = [
                 'id' => $shippingMethodId,
-                'availabilityRuleId' => $ruleId,
+                'availabilityRuleId' => RuleProvider::CART_AMOUNT_RULE_ID,
             ];
         }
 
@@ -55,19 +54,5 @@ class ShippingMethodProvider extends DemoDataProvider
             SELECT LOWER(HEX(`id`))
             FROM `shipping_method`;
         ');
-    }
-
-    private function getRuleId(): string
-    {
-        $result = $this->connection->fetchOne('
-            SELECT LOWER(HEX(`id`))
-            FROM `rule`
-        ');
-
-        if (!$result) {
-            throw new \RuntimeException('No rule found, please make sure that basic data is available by running the migrations.');
-        }
-
-        return (string) $result;
     }
 }

@@ -12,12 +12,15 @@ namespace Swag\PlatformDemoData\Tests;
 use Doctrine\DBAL\Connection;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Content\Category\CategoryCollection;
+use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Api\Context\SystemSource;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\Log\Package;
 use Shopware\Core\Framework\Test\TestCaseBase\IntegrationTestBehaviour;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Swag\PlatformDemoData\DataProvider\RuleProvider;
 use Swag\PlatformDemoData\DemoDataService;
 
 #[Package('fundamentals@after-sales')]
@@ -53,6 +56,26 @@ class DemoDataServiceTest extends TestCase
         $this->assertEntityCountGreaterThanOrEqual(1, 'sales_channel.repository');
         $this->assertEntityCountGreaterThanOrEqual(1, 'shipping_method.repository');
         $this->assertEntityCountGreaterThanOrEqual(16, 'product.repository');
+    }
+
+    public function testGenerateAssignsCartAmountRuleToAllShippingMethods(): void
+    {
+        $connection = $this->getContainer()->get(Connection::class);
+
+        // A rule sorting before all others must not become the availability rule of the shipping methods.
+        $connection->insert('rule', [
+            'id' => Uuid::fromHexToBytes('00000000000000000000000000000001'),
+            'name' => 'Never matching',
+            'priority' => 1,
+            'created_at' => (new \DateTimeImmutable())->format(Defaults::STORAGE_DATE_TIME_FORMAT),
+        ]);
+
+        $demoDataService = $this->getContainer()->get(DemoDataService::class);
+        $demoDataService->generate(new Context(new SystemSource()));
+
+        $availabilityRuleIds = $connection->fetchFirstColumn('SELECT DISTINCT LOWER(HEX(availability_rule_id)) FROM shipping_method');
+
+        static::assertSame([RuleProvider::CART_AMOUNT_RULE_ID], $availabilityRuleIds);
     }
 
     private function assertEntityCountGreaterThanOrEqual(int $expectedCount, string $repositoryName): void
